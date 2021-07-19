@@ -1,15 +1,11 @@
-﻿using Foundation;
-using mynfoApple.Domain;
+﻿using mynfoApple.Domain;
 using mynfoApple.Models;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using UIKit;
 
 namespace mynfoApple.Services
 {
@@ -60,7 +56,40 @@ namespace mynfoApple.Services
             }
         }
 
-        public async Task<User>
+        public async Task<User> GetUserByEmail(string _UrlBase, string _ServicePrefix, string _Controller, string _tokenType, string _accessToken, string _Email)
+        {
+            try
+            {
+                var model = new UserRequest { Email = _Email };
+
+                var request = JsonConvert.SerializeObject(model);
+
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(_tokenType, _accessToken);
+
+                client.BaseAddress = new Uri(_UrlBase);
+
+                var url = string.Format("{0}{1}", _ServicePrefix, _Controller);
+
+                var response = await client.PostAsync(url, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<User>(result);
+            }
+            catch
+            {
+                return null;
+            }
+        }
         #endregion
     }
 }

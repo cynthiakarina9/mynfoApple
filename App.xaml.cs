@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mynfoApple.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,13 +20,15 @@ namespace mynfoApple
         #region Properties
         public static string FolderPath { get; private set; }
         #endregion
-        public App(string root_DB)
+        public App(string _root_DB = "")
         {
             FolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
             InitializeComponent();
 
             //Set root DB sqlite
-            root_db = root_DB;
+            root_db = _root_DB;
+
+            this.MainPage = new NavigationPage(new LoginPage());
 
         }
     }
