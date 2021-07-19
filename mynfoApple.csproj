@@ -70,6 +70,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Box.cs" />
+    <Compile Include="Domain\Box_ProfileEmail.cs" />
+    <Compile Include="Domain\Box_ProfilePhone.cs" />
+    <Compile Include="Domain\Box_ProfileSM.cs" />
+    <Compile Include="Domain\Box_ProfileWhatsapp.cs" />
+    <Compile Include="Domain\ProfileEmail.cs" />
+    <Compile Include="Domain\ProfilePhone.cs" />
+    <Compile Include="Domain\ProfileSM.cs" />
+    <Compile Include="Domain\ProfileWhatsapp.cs" />
+    <Compile Include="Domain\RedSocial.cs" />
     <Compile Include="Domain\Response.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\UserType.cs" />
