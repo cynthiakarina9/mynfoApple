@@ -1,11 +1,6 @@
-﻿using Foundation;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UIKit;
 
 namespace mynfoApple.Models
 {
