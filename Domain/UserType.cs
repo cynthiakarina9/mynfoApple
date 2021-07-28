@@ -1,13 +1,8 @@
-﻿using Foundation;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UIKit;
-
-namespace mynfoApple.Domain
+﻿namespace mynfo.Domain
 {
+    using Newtonsoft.Json;
+    using System.Collections.Generic;
+
     public class UserType
     {
         public int UserTypeId { get; set; }

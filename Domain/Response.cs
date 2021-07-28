@@ -1,11 +1,4 @@
-﻿using Foundation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UIKit;
-
-namespace mynfoApple.Domain
+﻿namespace mynfo.Domain
 {
     public class Response
     {
@@ -14,6 +7,5 @@ namespace mynfoApple.Domain
         public string Messagge { get; set; }
 
         public object Result { get; set; }
-
     }
 }

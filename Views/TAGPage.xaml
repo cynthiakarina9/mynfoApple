@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:mynfo.Helpers"
+             x:Class="mynfo.Views.TAGPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <NavigationPage.TitleView>
+        <Grid
+            BindingContext="{Binding TAG}">
+            <ImageButton
+                BackgroundColor = "Transparent"
+                Command="{Binding BackHomeCommand}"
+                Grid.ColumnSpan = "3"
+                Margin = "0,0,70,0"
+                HorizontalOptions = "Center"
+                VerticalOptions = "Center"
+                WidthRequest = "100"
+                x:Name="Logosuperior"/>
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding TAG}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label
+                    FontSize="17"
+                    Grid.Row="1"
+                    HorizontalTextAlignment="Center"
+                    Text="{i18n:Translate SureTAG}"
+                    TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"/>
+                <StackLayout
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Label
+                        FontSize="12"                        
+                        HorizontalTextAlignment="Center"
+                        Text="{i18n:Translate TakeinStore}"
+                        TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"/>
+                    <Label
+                        FontSize="12"                        
+                        HorizontalTextAlignment="Center"
+                        Text="{i18n:Translate Store}"
+                        TextColor="{StaticResource MainColor}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToStoreCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <Frame
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Menu_BackgroundColorLight}, Dark={StaticResource Menu_BackgroundColorDark}}"
+                    CornerRadius="60"
+                    Grid.Row="3"
+                    Margin="20">
+                    <StackLayout
+                        HorizontalOptions="CenterAndExpand"
+                        Orientation="Horizontal"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
+                            x:Name="Press"/>
+                    </StackLayout>
+                </Frame>
+                <StackLayout
+                    Grid.Row="4"
+                    Margin="15">
+                    <Button
+                        BackgroundColor="{StaticResource MainColor}"
+                        BorderRadius="23"
+                        HeightRequest = "50"
+                        HorizontalOptions = "FillAndExpand"
+                        FontAttributes="Bold"
+                        Text="{i18n:Translate ConfigureTAG}"
+                        TextColor="{AppThemeBinding Light={StaticResource Dark_FontColor}, Dark={StaticResource Light_FontColor}}"
+                        VerticalOptions="EndAndExpand"
+                        
+                        WidthRequest="150"/>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

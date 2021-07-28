@@ -1,8 +1,8 @@
-﻿using SQLite;
-using System;
-
-namespace mynfoApple.Models
+﻿namespace mynfo.Models
 {
+    using SQLite;
+    using System;
+
     public class UserLocal
     {
         [PrimaryKey]

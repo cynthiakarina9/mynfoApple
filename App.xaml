@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:infra="clr-namespace:mynfoApple.Infraestructure"
-             x:Class="mynfoApple.App">
+             xmlns:infra="clr-namespace:mynfo.Infraestructure"
+             x:Class="mynfo.App">
     <Application.Resources>
         <!-- Application resource dictionary -->
         <ResourceDictionary>

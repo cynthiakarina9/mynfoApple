@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using SQLite;
-using System;
-
-namespace mynfoApple.Models
+﻿namespace mynfo.Models
 {
+    using Newtonsoft.Json;
+    using SQLite;
+    using System;
+
     public class TokenResponse
     {
         #region Properties

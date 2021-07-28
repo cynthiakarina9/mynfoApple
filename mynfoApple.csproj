@@ -7,13 +7,13 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{440aa056-593a-4519-8708-27081dee632f}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>mynfoApple</RootNamespace>
+    <RootNamespace>mynfo</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>mynfoApple</AssemblyName>
+    <AssemblyName>mynfo</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-    <ProvisioningType>manual</ProvisioningType>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,9 +50,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>Apple Distribution: Nicolas Blanco Storz (738WN7944H)</CodesignKey>
+    <CodesignKey>Apple Development: Nicolas Blanco Storz (F698L64449)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignProvision>mynfo Apple dist</CodesignProvision>
+    <CodesignProvision>VS: com.companyname.mynfoA Development</CodesignProvision>
+    <MtouchI18n>west</MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -63,8 +64,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Nicolas Blanco Storz (738WN7944H)</CodesignKey>
-    <CodesignProvision>mynfo Apple dist</CodesignProvision>
+    <CodesignProvision>mynfo dist</CodesignProvision>
     <MtouchI18n>west</MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -75,6 +79,7 @@
     <Compile Include="Domain\Box_ProfilePhone.cs" />
     <Compile Include="Domain\Box_ProfileSM.cs" />
     <Compile Include="Domain\Box_ProfileWhatsapp.cs" />
+    <Compile Include="Domain\ColorBox.cs" />
     <Compile Include="Domain\ProfileEmail.cs" />
     <Compile Include="Domain\ProfilePhone.cs" />
     <Compile Include="Domain\ProfileSM.cs" />
@@ -82,32 +87,463 @@
     <Compile Include="Domain\RedSocial.cs" />
     <Compile Include="Domain\Response.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\UserTags.cs" />
     <Compile Include="Domain\UserType.cs" />
     <Compile Include="Helpers\Converter.cs" />
+    <Compile Include="Helpers\FilesHelper.cs" />
+    <Compile Include="Helpers\Languages.cs" />
+    <Compile Include="Helpers\RegexUtilities.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\TranslateExtension.cs" />
+    <Compile Include="Implementations\Localize.cs" />
+    <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Infraestructure\InstanceLocator.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Models\BoxLocal.cs" />
+    <Compile Include="Models\ChangePasswordRequest.cs" />
+    <Compile Include="Models\Data_ntc.cs" />
+    <Compile Include="Models\ForeingBox.cs" />
+    <Compile Include="Models\ForeingProfile.cs" />
+    <Compile Include="Models\Get_nfc.cs" />
+    <Compile Include="Models\PhoneProfile.cs" />
+    <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\ProfileLocal.cs" />
+    <Compile Include="Models\SMProfile.cs" />
     <Compile Include="Models\TokenResponse.cs" />
     <Compile Include="Models\UserRequest.cs" />
+    <Compile Include="Models\WhatsappProfile.cs" />
+    <Compile Include="Resources1\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\getNfc.cs" />
+    <Compile Include="Services\Imprime_box.cs" />
+    <Compile Include="Services\leerTag.cs" />
+    <Compile Include="Services\ReadTag.cs" />
+    <Compile Include="Services\write_tag.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BoxRegisterViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\CreateProfileEmailViewModel.cs" />
+    <Compile Include="ViewModels\CreateProfilePhoneViewModel.cs" />
+    <Compile Include="ViewModels\CreateProfileSMViewModel.cs" />
+    <Compile Include="ViewModels\CreateProfileWhatsAppViewModel.cs" />
+    <Compile Include="ViewModels\DetailsBoxEdithViewModel.cs" />
+    <Compile Include="ViewModels\DetailsBoxViewModel.cs" />
+    <Compile Include="ViewModels\EdithProfileViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileEmailViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileFacebookViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileSnapchatViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileTelegramViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileTiktokViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileTwitchViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileTwitterViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileWebViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileWhatsAppViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileYoutubeViewModel.cs" />
+    <Compile Include="ViewModels\ImageSizeViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Views\CreateProfileTelegramPage.xaml.cs">
+      <DependentUpon>CreateProfileTelegramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileTiktokPage.xaml.cs">
+      <DependentUpon>CreateProfileTiktokPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileTwitchPage.xaml.cs">
+      <DependentUpon>CreateProfileTwitchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileTwitterPage.xaml.cs">
+      <DependentUpon>CreateProfileTwitterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileWebPagePage.xaml.cs">
+      <DependentUpon>CreateProfileWebPagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileWhatsAppPage.xaml.cs">
+      <DependentUpon>CreateProfileWhatsAppPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileSpotifyPage.xaml.cs">
+      <DependentUpon>EditProfileSpotifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EditProfileSpotifyViewModel.cs" />
+    <Compile Include="Views\CreateProfileLinkedinPage.xaml.cs">
+      <DependentUpon>CreateProfileLinkedinPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileSnapchatPage.xaml.cs">
+      <DependentUpon>CreateProfileSnapchatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileSpotifyPage.xaml.cs">
+      <DependentUpon>CreateProfileSpotifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileInstagramPage.xaml.cs">
+      <DependentUpon>EditProfileInstagramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileLinkedinPage.xaml.cs">
+      <DependentUpon>EditProfileLinkedinPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EditProfileLinkedinViewModel.cs" />
+    <Compile Include="ViewModels\EditProfilePhoneViewModel.cs" />
+    <Compile Include="ViewModels\ForeingBoxViewModel.cs" />
+    <Compile Include="ViewModels\GifViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\IntroductionGifViewModel.cs" />
+    <Compile Include="ViewModels\LectorQRViewModel.cs" />
+    <Compile Include="ViewModels\ListForeignBoxViewModel.cs" />
+    <Compile Include="ViewModels\ListOfNetworksViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Models\UserLocal.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MyProfileViewModel.cs" />
+    <Compile Include="ViewModels\MyQRViewModel.cs" />
+    <Compile Include="ViewModels\PasswordRecoveryViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByEmailViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByFacebookViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByInstagramViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByLinkedinViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesBYPESMViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByPhoneViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesBySnapchatViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesBySpotifyViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByTelegramViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByTiktokViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByTwitchViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByTwitterViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByWebPageViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByWhatsAppViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesByYoutubeViewModel.cs" />
+    <Compile Include="ViewModels\ProfilesViewModel.cs" />
+    <Compile Include="ViewModels\ProfileTypeSelectionViewModel.cs" />
+    <Compile Include="ViewModels\Register2ViewModel.cs" />
+    <Compile Include="ViewModels\TAGViewModel.cs" />
+    <Compile Include="Views\BoxRegisterPage.xaml.cs">
+      <DependentUpon>BoxRegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ColorPickerPopUp.xaml.cs">
+      <DependentUpon>ColorPickerPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfigStikerPage.xaml.cs">
+      <DependentUpon>ConfigStikerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileEmailPage.xaml.cs">
+      <DependentUpon>CreateProfileEmailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileEmailPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileEmailPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileFacebookPage.xaml.cs">
+      <DependentUpon>CreateProfileFacebookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileFacebookPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileFacebookPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileInstagramPage.xaml.cs">
+      <DependentUpon>CreateProfileInstagramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileInstagramPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileInstagramPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileLinkedinPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileLinkedinPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfilePhonePage.xaml.cs">
+      <DependentUpon>CreateProfilePhonePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfilePhonePopUpPage.xaml.cs">
+      <DependentUpon>CreateProfilePhonePopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileSMPage.xaml.cs">
+      <DependentUpon>CreateProfileSMPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileSnapchatPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileSnapchatPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileSpotifyPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileSpotifyPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileTelegramPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileTelegramPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileTiktokPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileTiktokPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileTwitchPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileTwitchPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileTwitterPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileTwitterPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileWebPagePopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileWebPagePopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileWhatsAppPopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileWhatsAppPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileYoutubePage.xaml.cs">
+      <DependentUpon>CreateProfileYoutubePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateProfileYoutubePopUpPage.xaml.cs">
+      <DependentUpon>CreateProfileYoutubePopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailBoxPopUpPage.xaml.cs">
+      <DependentUpon>DetailBoxPopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailsBoxEdithPage.xaml.cs">
+      <DependentUpon>DetailsBoxEdithPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileEmailPage.xaml.cs">
+      <DependentUpon>EditProfileEmailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileFacebookPage.xaml.cs">
+      <DependentUpon>EditProfileFacebookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfilePhonePage.xaml.cs">
+      <DependentUpon>EditProfilePhonePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileSnapchatPage.xaml.cs">
+      <DependentUpon>EditProfileSnapchatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileTelegramPage.xaml.cs">
+      <DependentUpon>EditProfileTelegramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileTiktokPage.xaml.cs">
+      <DependentUpon>EditProfileTiktokPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileTwitchPage.xaml.cs">
+      <DependentUpon>EditProfileTwitchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileTwitterPage.xaml.cs">
+      <DependentUpon>EditProfileTwitterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileWebPage.xaml.cs">
+      <DependentUpon>EditProfileWebPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileWhatsAppPage.xaml.cs">
+      <DependentUpon>EditProfileWhatsAppPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProfileYoutubePage.xaml.cs">
+      <DependentUpon>EditProfileYoutubePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForeingBoxPage.xaml.cs">
+      <DependentUpon>ForeingBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GifPage.xaml.cs">
+      <DependentUpon>GifPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImageSizePopUpPage.xaml.cs">
+      <DependentUpon>ImageSizePopUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IntroductionGifPage.xaml.cs">
+      <DependentUpon>IntroductionGifPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LectorQRPage.xaml.cs">
+      <DependentUpon>LectorQRPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListForeignBoxPage.xaml.cs">
+      <DependentUpon>ListForeignBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListOfNetworksPage.xaml.cs">
+      <DependentUpon>ListOfNetworksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MasterPage.xaml.cs">
+      <DependentUpon>MasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyProfilePage.xaml.cs">
+      <DependentUpon>MyProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyQRPage.xaml.cs">
+      <DependentUpon>MyQRPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PasswordRecoveryPage.xaml.cs">
+      <DependentUpon>PasswordRecoveryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByEmailPage.xaml.cs">
+      <DependentUpon>ProfilesByEmailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByFacebookPage.xaml.cs">
+      <DependentUpon>ProfilesByFacebookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByInstagramPage.xaml.cs">
+      <DependentUpon>ProfilesByInstagramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByLinkedinPage.xaml.cs">
+      <DependentUpon>ProfilesByLinkedinPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesBYPESMPage.xaml.cs">
+      <DependentUpon>ProfilesBYPESMPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByPhonePage.xaml.cs">
+      <DependentUpon>ProfilesByPhonePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesBySnapchatPage.xaml.cs">
+      <DependentUpon>ProfilesBySnapchatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesBySpotifyPage.xaml.cs">
+      <DependentUpon>ProfilesBySpotifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByTelegramPage.xaml.cs">
+      <DependentUpon>ProfilesByTelegramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByTiktokPage.xaml.cs">
+      <DependentUpon>ProfilesByTiktokPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByTwitchPage.xaml.cs">
+      <DependentUpon>ProfilesByTwitchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByTwitterPage.xaml.cs">
+      <DependentUpon>ProfilesByTwitterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByWebPage.xaml.cs">
+      <DependentUpon>ProfilesByWebPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByWhatsAppPage.xaml.cs">
+      <DependentUpon>ProfilesByWhatsAppPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesByYoutubePage.xaml.cs">
+      <DependentUpon>ProfilesByYoutubePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfilesPage.xaml.cs">
+      <DependentUpon>ProfilesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfileTypeSelection.xaml.cs">
+      <DependentUpon>ProfileTypeSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QRTabbedPage.xaml.cs">
+      <DependentUpon>QRTabbedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Register2Page.xaml.cs">
+      <DependentUpon>Register2Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stickerconfig.xaml.cs">
+      <DependentUpon>Stickerconfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabbedPage1.xaml.cs">
+      <DependentUpon>TabbedPage1.xaml</DependentUpon>
+    </Compile>
+    <BundleResource Include="Resources\account.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\checkb.png" />
+    <BundleResource Include="Resources\checkn.png" />
+    <BundleResource Include="Resources\comments1.png" />
+    <BundleResource Include="Resources\connections_icon.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Default-Portrait.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+    <BundleResource Include="Resources\edit1.png" />
+    <BundleResource Include="Resources\edit2.png" />
+    <BundleResource Include="Resources\edit3.png" />
+    <BundleResource Include="Resources\enter1.png" />
+    <Compile Include="Views\TAGPage.xaml.cs">
+      <DependentUpon>TAGPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Resources\facebook.gif" />
+    <BundleResource Include="Resources\facebook1.png" />
+    <BundleResource Include="Resources\facebook2.png" />
+    <BundleResource Include="Resources\facebook3.png" />
+    <Content Include="Resources\GIF_Facebook.gif" />
+    <Content Include="Resources\GIF_Facebook2.gif" />
+    <Content Include="Resources\GIF_Facebook3.gif" />
+    <Content Include="Resources\GIF_Facebook4.gif" />
+    <Content Include="Resources\GIF_LinkedIn.gif" />
+    <Content Include="Resources\GIF_Spotify.gif" />
+    <Content Include="Resources\GIF_Youtube.gif" />
+    <BundleResource Include="Resources\gmail1.png" />
+    <BundleResource Include="Resources\gmail2.png" />
+    <BundleResource Include="Resources\gmail3.png" />
+    <BundleResource Include="Resources\home_icon.png" />
+    <BundleResource Include="Resources\icon_qr.png" />
+    <BundleResource Include="Resources\icon_tag.png" />
+    <BundleResource Include="Resources\instagram3.png" />
+    <BundleResource Include="Resources\instagramlogo1.png" />
+    <BundleResource Include="Resources\instagramlogo2.png" />
+    <Content Include="Resources\layout1.xml" />
+    <Content Include="Resources\linkedin.gif" />
+    <BundleResource Include="Resources\linkedin1.png" />
+    <BundleResource Include="Resources\linkedin2.png" />
+    <BundleResource Include="Resources\linkedin3.png" />
+    <BundleResource Include="Resources\lista.png" />
+    <BundleResource Include="Resources\Logo_sin_relleno.png" />
+    <BundleResource Include="Resources\logo_superior2.png" />
+    <BundleResource Include="Resources\logo_superior3.png" />
+    <BundleResource Include="Resources\logout.png" />
+    <BundleResource Include="Resources\mail1.png" />
+    <BundleResource Include="Resources\mail2.png" />
+    <BundleResource Include="Resources\mail3.png" />
+    <BundleResource Include="Resources\networks_icon.png" />
+    <BundleResource Include="Resources\no.png" />
+    <BundleResource Include="Resources\no_image.png" />
+    <BundleResource Include="Resources\perfiles.png" />
+    <BundleResource Include="Resources\Plus.png" />
+    <BundleResource Include="Resources\plusb.png" />
+    <BundleResource Include="Resources\plusn.png" />
+    <BundleResource Include="Resources\Prueba.png" />
+    <BundleResource Include="Resources\question.png" />
+    <BundleResource Include="Resources\question1.png" />
+    <BundleResource Include="Resources\snapchat1.png" />
+    <BundleResource Include="Resources\snapchat2.png" />
+    <BundleResource Include="Resources\snapchat3.png" />
+    <Content Include="Resources\splash_screen.xml" />
+    <Content Include="Resources\spotify.gif" />
+    <BundleResource Include="Resources\spotify1.png" />
+    <BundleResource Include="Resources\spotify2.png" />
+    <BundleResource Include="Resources\spotify3.png" />
+    <BundleResource Include="Resources\tel1.png" />
+    <BundleResource Include="Resources\tel2.png" />
+    <BundleResource Include="Resources\tel3.png" />
+    <BundleResource Include="Resources\telegram1.png" />
+    <BundleResource Include="Resources\telegram2.png" />
+    <BundleResource Include="Resources\telegram3.png" />
+    <BundleResource Include="Resources\tiktok1.png" />
+    <BundleResource Include="Resources\tiktok2.png" />
+    <BundleResource Include="Resources\tiktok3.png" />
+    <BundleResource Include="Resources\tipos.png" />
+    <BundleResource Include="Resources\trash.png" />
+    <BundleResource Include="Resources\trash2.png" />
+    <BundleResource Include="Resources\trash3.png" />
+    <BundleResource Include="Resources\twitch1.png" />
+    <BundleResource Include="Resources\twitch2.png" />
+    <BundleResource Include="Resources\twitch3.png" />
+    <BundleResource Include="Resources\twitter3.png" />
+    <BundleResource Include="Resources\twitterlogo1.png" />
+    <BundleResource Include="Resources\twitterlogo2.png" />
+    <BundleResource Include="Resources\whatsapp1.png" />
+    <BundleResource Include="Resources\whatsapp2.png" />
+    <BundleResource Include="Resources\whatsapp3.png" />
+    <Content Include="Resources\youtube.gif" />
+    <BundleResource Include="Resources\youtube1.png" />
+    <BundleResource Include="Resources\youtube2.png" />
+    <BundleResource Include="Resources\youtube3.png" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
@@ -121,8 +557,17 @@
     <PackageReference Include="MvvmLightLibs">
       <Version>5.4.1.1</Version>
     </PackageReference>
+    <PackageReference Include="NdefLibrary">
+      <Version>4.1.0</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.NFC">
+      <Version>0.1.20</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>2.0.0.12</Version>
     </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
@@ -133,9 +578,27 @@
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>3.2.0</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Xamarin.Forms">
       <Version>5.0.0.2083</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.InputKit">
+      <Version>3.7.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.OpenWhatsApp">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>2.4.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -183,9 +646,17 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="Resources1\Resource.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources1\Resource.pt.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources1\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -197,6 +668,426 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ColorPickerPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChangePasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ConfigStikerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MasterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TabbedPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ListForeignBoxPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\BoxRegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ListOfNetworksPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DetailBoxPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Register2Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DetailsBoxEdithPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ImageSizePopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\IntroductionGifPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LectorQRPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileEmailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfileTypeSelection.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesBYPESMPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileEmailPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileFacebookPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileInstagramPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileInstagramPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileLinkedinPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileSMPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfilePhonePopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileSnapchatPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileSpotifyPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTelegramPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTiktokPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTwitchPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTwitterPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileWebPagePopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileWhatsAppPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileYoutubePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileYoutubePopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByEmailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileEmailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByFacebookPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileFacebookPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileFacebookPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByPhonePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfilePhonePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfilePhonePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByLinkedinPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileLinkedinPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileLinkedinPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByInstagramPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileInstagramPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesBySnapchatPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileSnapchatPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileSnapchatPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesBySpotifyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileSpotifyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileSpotifyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByTelegramPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTelegramPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileTelegramPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByTiktokPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTiktokPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileTiktokPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByTwitchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTwitchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileTwitchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByTwitterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileTwitterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileTwitterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByWebPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileWebPagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileWebPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileYoutubePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByYoutubePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfilesByWhatsAppPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CreateProfileWhatsAppPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditProfileWhatsAppPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PasswordRecoveryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TAGPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\QRTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyQRPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MyProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\GifPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ForeingBoxPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Stickerconfig.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

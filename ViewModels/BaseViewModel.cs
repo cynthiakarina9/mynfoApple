@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace mynfoApple.ViewModels
+namespace mynfo.ViewModels
 {
     public class BaseViewModel
     {

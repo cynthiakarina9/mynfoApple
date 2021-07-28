@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:mynfo.Helpers"
+             x:Class="mynfo.Views.RegisterPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <NavigationPage.TitleView>
+        <Grid>
+            <ImageButton
+                BackgroundColor="Transparent"
+                Margin="0,0,70,0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="100"
+                x:Name="Logosuperior"/>
+        </Grid>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <Grid
+            BindingContext="{Binding Register}">
+            <ScrollView>
+                <StackLayout
+                    Padding="15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            Grid.Row="0"
+                            HorizontalOptions="Center"
+                            Text="{i18n:Translate Register}"
+                            TextColor="{StaticResource MainColor}"
+                            VerticalOptions="Center"/>
+                        <StackLayout
+                            Grid.Row="1"
+                            VerticalOptions="Center">
+                            <Frame
+                                CornerRadius="70"
+                                HasShadow="False"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                IsClippedToBounds="True"
+                                Margin="20"
+                                Padding="0"
+                                VerticalOptions="Center"
+                                WidthRequest="140">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="1000"
+                                    Source="{Binding ImageSource}"
+                                    WidthRequest="1000">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                            <Label
+                                FontSize="Small"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="{i18n:Translate ChangeImage}"
+                                TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
+                                VerticalOptions="StartAndExpand"/>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="2">
+                            <Label
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="{i18n:Translate FirstNameLabel}"
+                                TextColor="{StaticResource MainColor}"
+                                VerticalOptions="Center"/>
+                            <Entry
+                                BackgroundColor="{AppThemeBinding Dark=Transparent}"
+                                ClearButtonVisibility="WhileEditing"
+                                HeightRequest="40"
+                                HorizontalTextAlignment="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                IsSpellCheckEnabled="True"
+                                Text="{Binding FirstName}"
+                                TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
+                                VerticalTextAlignment="Center"
+                                WidthRequest="300">
+                                <Entry.Keyboard>
+                                    <Keyboard x:FactoryMethod="Create">
+                                        <x:Arguments>
+                                            <KeyboardFlags>CapitalizeWord</KeyboardFlags>
+                                        </x:Arguments>
+                                    </Keyboard>
+                                </Entry.Keyboard>
+                            </Entry>
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="3">
+                            <Label
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="{i18n:Translate LastNameLabel}"
+                                TextColor="{StaticResource MainColor}"
+                                VerticalTextAlignment="Center"/>
+                            <Entry
+                                BackgroundColor="{AppThemeBinding Dark=Transparent}"
+                                ClearButtonVisibility="WhileEditing"
+                                HeightRequest="40"
+                                HorizontalTextAlignment="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                IsSpellCheckEnabled="True"
+                                Text="{Binding LastName}"
+                                TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
+                                VerticalTextAlignment="Center"
+                                WidthRequest="300">
+                                <Entry.Keyboard>
+                                    <Keyboard x:FactoryMethod="Create">
+                                        <x:Arguments>
+                                            <KeyboardFlags>CapitalizeWord</KeyboardFlags>
+                                        </x:Arguments>
+                                    </Keyboard>
+                                </Entry.Keyboard>
+                            </Entry>
+                        </StackLayout>
+                        <Button
+                            Grid.Row="4"
+                            BackgroundColor="{StaticResource MainColor}"
+                            BorderRadius="23"
+                            Command="{Binding NextCommand}"
+                            HorizontalOptions="Fill"
+                            IsEnabled="{Binding IsEnabled}"
+                            Margin="15"
+                            Text="{i18n:Translate Next}"
+                            TextColor="{AppThemeBinding Light={StaticResource Dark_FontColor}, Dark={StaticResource Light_FontColor}}"
+                            VerticalOptions="End"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <ActivityIndicator
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsRunning}"
+                VerticalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

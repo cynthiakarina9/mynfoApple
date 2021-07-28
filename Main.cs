@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace mynfoApple
+namespace mynfo
 {
     public class Application
     {

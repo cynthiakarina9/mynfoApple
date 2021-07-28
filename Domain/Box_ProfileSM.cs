@@ -1,4 +1,4 @@
-﻿namespace mynfoApple.Domain
+﻿namespace mynfo.Domain
 {
     using Newtonsoft.Json;
     public class Box_ProfileSM
