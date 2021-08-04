@@ -101,9 +101,9 @@
                 IsRunning = false;
                 IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     "We can't send the new password to this email.",
-                    "OK");
+                    Languages.Accept);
                 return;
             }
 

@@ -178,36 +178,36 @@
             if (string.IsNullOrEmpty(this.User.FirstName))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
-                    "Languages.FirstNameValidation",
-                    "Languages.Accept");
+                    Languages.Error,
+                    Languages.FirstNameValidation,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.User.LastName))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
-                    "Languages.LastNameValidation",
-                    "Languages.Accept");
+                    Languages.Error,
+                    Languages.LastNameValidation,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.User.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
-                    "Languages.EmailValidation",
-                    "Languages.Accept");
+                    Languages.Error,
+                    Languages.EmailValidation,
+                    Languages.Accept);
                 return;
             }
 
             if (!RegexUtilities.IsValidEmail(this.User.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
-                    "Languages.EmailValidation2",
-                    "Languages.Accept");
+                    Languages.Error,
+                    Languages.EmailValidation2,
+                    Languages.Accept);
                 return;
             }
 
@@ -220,9 +220,9 @@
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     checkConnetion.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 return;
             }
 
@@ -247,9 +247,9 @@
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     response.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 return;
             }
 

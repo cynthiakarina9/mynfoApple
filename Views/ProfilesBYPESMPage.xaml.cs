@@ -455,9 +455,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 
@@ -486,9 +486,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 
@@ -513,9 +513,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 
@@ -537,9 +537,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 
@@ -570,9 +570,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 
@@ -596,9 +596,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 
@@ -629,9 +629,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 
@@ -653,9 +653,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     connection.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
             }
 

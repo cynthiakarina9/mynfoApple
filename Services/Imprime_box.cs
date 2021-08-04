@@ -331,7 +331,7 @@
                             MainViewModel.GetInstance().ListForeignBox.UpdateList(foreingBox.UserId);
 
                         }
-                        PopupNavigation.Instance.PushAsync(new ForeingBoxPage(foreingBox, true));
+                        PopupNavigation.Instance.PushAsync(new ForeingBoxPage(foreingBox));
                     });
                 }
             }
@@ -606,7 +606,7 @@
                             MainViewModel.GetInstance().ListForeignBox.UpdateList(foreingBox.UserId);
 
                         }
-                        PopupNavigation.Instance.PushAsync(new ForeingBoxPage(foreingBox, true));
+                        PopupNavigation.Instance.PushAsync(new ForeingBoxPage(foreingBox));
                     });
                 }
             }

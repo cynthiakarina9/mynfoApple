@@ -36,12 +36,13 @@
                             Grid.RowSpan="2"
                             HeightRequest="40"
                             HorizontalOptions="End"
+                            Padding="5"
                             VerticalOptions="Start"
                             WidthRequest="40"
                             x:Name="EdithButton" />
                         <!--Nombre de la box 
                     El nombre de la box será variable-->
-                        <Entry 
+                        <Entry                             
                             FontAttributes="Bold"
                             FontSize="25"
                             Grid.ColumnSpan="4"
@@ -49,6 +50,7 @@
                             HorizontalOptions="CenterAndExpand"
                             HorizontalTextAlignment="Center"
                             IsReadOnly="True"
+                            Margin="10"
                             Text="{Binding Box.Name, Mode=TwoWay}"
                             TextColor="{AppThemeBinding Light={StaticResource MainColor}, Dark={StaticResource Dark_FontColor}}"
                             BackgroundColor="Transparent"

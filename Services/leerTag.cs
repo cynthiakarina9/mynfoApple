@@ -1,16 +1,15 @@
-﻿using mynfo.Services;
+﻿using CoreNFC;
+using Foundation;
+using mynfo.Services;
+using Plugin.NFC;
+using System;
+using System.Threading;
+using UIKit;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(leerTag))]
 namespace mynfo.Services
 {
-    using CoreNFC;
-    using Foundation;
-    using Plugin.NFC;
-    using System;
-    using System.Threading;
-    using UIKit;
-    using Xamarin.Forms;
     public class leerTag : NFCNdefReaderSessionDelegate, INFCNdefReaderSessionDelegate
     {
         public NFCNdefReaderSession Session { get; set; }

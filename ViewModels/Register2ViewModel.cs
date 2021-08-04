@@ -303,16 +303,18 @@
                 apiSecurity,
                 "/api",
                 "/Users/LoginMessage",
-                Email);
-            this.IsRunning = false;
-            this.IsEnabled = true;
+                Email);            
 
             await Application.Current.MainPage.DisplayAlert(
                 Languages.ConfirmLabel,
                 Languages.UserRegisteredMessage,
                 Languages.Accept);
-            MainViewModel.GetInstance().Login = new LoginViewModel();
-            Application.Current.MainPage = new LoginPage();
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+            await Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
         #endregion
     }

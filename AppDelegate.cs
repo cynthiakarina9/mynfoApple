@@ -51,7 +51,6 @@
             //    statusBar.BackgroundColor = Color.FromHex("#7f6550").ToUIColor();
             //}
         }
-
         #region Trigger nfc
         // Set speed delay for monitoring changes.
         Xamarin.Essentials.SensorSpeed speed = Xamarin.Essentials.SensorSpeed.Game;
@@ -132,7 +131,6 @@
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                user_id = 0;
             }
 
             user_id_tag = user_id.ToString();
@@ -167,7 +165,7 @@
                 });
             }
             session.InvalidateSession();
-            Session.InvalidateSession();
+            session.Dispose();
         }
 
         string GetRecords(NFCNdefPayload[] records)

@@ -3,14 +3,22 @@
     using Models;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using Xamarin.Forms;
 
     public class ForeingBoxViewModel : BaseViewModel
     {
         #region Atrributes
+        private ImageSource imageSource;
         private ObservableCollection<ProfileLocal> profilesF;
+        private ForeingBox foreingBox;
         #endregion
 
         #region Properties
+        public ImageSource ImageSource
+        {
+            get { return this.imageSource; }
+            set { SetValue(ref this.imageSource, value); }
+        }
         public ObservableCollection<ProfileLocal> ProfilesF
         {
             get { return profilesF; }
@@ -19,11 +27,21 @@
                 SetValue(ref profilesF, value);
             }
         }
+
+        public ForeingBox ForeingBox
+        {
+            get { return foreingBox; }
+            private set
+            {
+                SetValue(ref foreingBox, value);
+            }
+        }
         #endregion
 
         #region Constructor
-        public ForeingBoxViewModel(ForeingBox _foreingBox, bool isAfterReceiving = false)
+        public ForeingBoxViewModel(ForeingBox _foreingBox)
         {
+            ImageSource = _foreingBox.ImageFullPath;
             DataFill(_foreingBox);
         }
         #endregion
@@ -82,6 +100,9 @@
                             break;
                         case "Whatsapp":
                             Image = "whatsapp2";
+                            break;
+                        case "Telegram":
+                            Image = "telegram2";
                             break;
                         default:
                             break;

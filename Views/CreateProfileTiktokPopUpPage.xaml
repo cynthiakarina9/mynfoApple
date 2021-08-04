@@ -105,10 +105,10 @@
                         </StackLayout>
                         <Grid
                             Grid.Row = "4"
-                            VerticalOptions = "CenterAndExpand">
+                            HorizontalOptions = "CenterAndExpand">
                             <ActivityIndicator
                                 IsRunning = "{Binding IsRunning, Mode=TwoWay}"
-                                VerticalOptions = "CenterAndExpand"
+                                HorizontalOptions = "CenterAndExpand"
                                 x:Name= "ActivityIn">
                             </ActivityIndicator>
                         </Grid>

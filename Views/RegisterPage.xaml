@@ -53,9 +53,7 @@
                                 WidthRequest="140">
                                 <Image
                                     Aspect="AspectFill"
-                                    HeightRequest="1000"
-                                    Source="{Binding ImageSource}"
-                                    WidthRequest="1000">
+                                    Source="{Binding ImageSource, Mode=TwoWay}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
                                     </Image.GestureRecognizers>
@@ -124,18 +122,17 @@
                                 </Entry.Keyboard>
                             </Entry>
                         </StackLayout>
-                        <Button
-                            Grid.Row="4"
-                            BackgroundColor="{StaticResource MainColor}"
-                            BorderRadius="23"
-                            Command="{Binding NextCommand}"
-                            HorizontalOptions="Fill"
-                            IsEnabled="{Binding IsEnabled}"
-                            Margin="15"
-                            Text="{i18n:Translate Next}"
-                            TextColor="{AppThemeBinding Light={StaticResource Dark_FontColor}, Dark={StaticResource Light_FontColor}}"
-                            VerticalOptions="End"/>
                     </Grid>
+                    <Button
+                        BackgroundColor="{StaticResource MainColor}"
+                        BorderRadius="23"
+                        Command="{Binding NextCommand}"
+                        HorizontalOptions="Fill"
+                        IsEnabled="{Binding IsEnabled}"
+                        Margin="15"
+                        Text="{i18n:Translate Next}"
+                        TextColor="{AppThemeBinding Light={StaticResource Dark_FontColor}, Dark={StaticResource Light_FontColor}}"
+                        VerticalOptions="End"/>
                 </StackLayout>
             </ScrollView>
             <ActivityIndicator

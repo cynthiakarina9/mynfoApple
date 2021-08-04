@@ -22,20 +22,17 @@
                         Grid.Row="0"
                         Orientation="Horizontal">
                         <Frame 
-                            BorderColor="{StaticResource MainColor}"
-                            WidthRequest="100"
-                            HeightRequest="100" 
-                            CornerRadius="50"
+                            CornerRadius="40"
+                            HeightRequest="40"
+                            WidthRequest="65"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
                             IsClippedToBounds="True"
                             HasShadow="False"
-                            Padding="0"
-                            VerticalOptions="Center" 
-                            HorizontalOptions="Center"
-                            Margin="20">
+                            Margin="5">
                             <Image
                                 Aspect="AspectFill"
-                                WidthRequest="1000"
-                                HeightRequest="1000"
+                                Margin="-20"
                                 Source = "{Binding User.ImageFullPath}"/>
                         </Frame>
                         <Label 

@@ -63,8 +63,8 @@
     <WarningLevel>4</WarningLevel>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Distribution: Nicolas Blanco Storz (738WN7944H)</CodesignKey>
-    <CodesignProvision>mynfo dist</CodesignProvision>
+    <CodesignKey>Apple Development: Nicolas Blanco Storz (F698L64449)</CodesignKey>
+    <CodesignProvision>VS: com.companyname.mynfoA Development</CodesignProvision>
     <MtouchI18n>west</MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
@@ -443,7 +443,6 @@
     <BundleResource Include="Resources\checkb.png" />
     <BundleResource Include="Resources\checkn.png" />
     <BundleResource Include="Resources\comments1.png" />
-    <BundleResource Include="Resources\connections_icon.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -456,6 +455,7 @@
     <Compile Include="Views\TAGPage.xaml.cs">
       <DependentUpon>TAGPage.xaml</DependentUpon>
     </Compile>
+    <BundleResource Include="Resources\connections_icon2.png" />
     <Content Include="Resources\facebook.gif" />
     <BundleResource Include="Resources\facebook1.png" />
     <BundleResource Include="Resources\facebook2.png" />
@@ -465,17 +465,19 @@
     <Content Include="Resources\GIF_Facebook3.gif" />
     <Content Include="Resources\GIF_Facebook4.gif" />
     <Content Include="Resources\GIF_LinkedIn.gif" />
+    <BundleResource Include="Resources\GIF_mynfo_general.gif" />
+    <BundleResource Include="Resources\GIF_scaneo_iOS.gif" />
     <Content Include="Resources\GIF_Spotify.gif" />
     <Content Include="Resources\GIF_Youtube.gif" />
     <BundleResource Include="Resources\gmail1.png" />
     <BundleResource Include="Resources\gmail2.png" />
     <BundleResource Include="Resources\gmail3.png" />
-    <BundleResource Include="Resources\home_icon.png" />
     <BundleResource Include="Resources\icon_qr.png" />
     <BundleResource Include="Resources\icon_tag.png" />
     <BundleResource Include="Resources\instagram3.png" />
     <BundleResource Include="Resources\instagramlogo1.png" />
     <BundleResource Include="Resources\instagramlogo2.png" />
+    <BundleResource Include="Resources\home_icon2.png" />
     <Content Include="Resources\layout1.xml" />
     <Content Include="Resources\linkedin.gif" />
     <BundleResource Include="Resources\linkedin1.png" />
@@ -489,7 +491,6 @@
     <BundleResource Include="Resources\mail1.png" />
     <BundleResource Include="Resources\mail2.png" />
     <BundleResource Include="Resources\mail3.png" />
-    <BundleResource Include="Resources\networks_icon.png" />
     <BundleResource Include="Resources\no.png" />
     <BundleResource Include="Resources\no_image.png" />
     <BundleResource Include="Resources\perfiles.png" />
@@ -502,6 +503,10 @@
     <BundleResource Include="Resources\snapchat1.png" />
     <BundleResource Include="Resources\snapchat2.png" />
     <BundleResource Include="Resources\snapchat3.png" />
+    <BundleResource Include="Resources\networks_icon2.png" />
+    <BundleResource Include="Resources\pelta3.png" />
+    <BundleResource Include="Resources\paleta.png" />
+    <BundleResource Include="Resources\paleta2.png" />
     <Content Include="Resources\splash_screen.xml" />
     <Content Include="Resources\spotify.gif" />
     <BundleResource Include="Resources\spotify1.png" />

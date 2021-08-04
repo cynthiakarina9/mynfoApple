@@ -33,8 +33,6 @@
             apiService = new ApiService();
             Box = new Box();
             Box.BoxId = _BoxId;
-            NavigationPage.SetHasNavigationBar(this, false);
-            OSAppTheme currentTheme = Application.Current.RequestedTheme;
             BackgroundFull.CloseWhenBackgroundIsClicked = true;
         }
         #endregion
@@ -255,6 +253,23 @@
                         SMWeb.Exist = false;
                         MainViewModel.GetInstance().ListOfNetworks.updateProfileSM(SMWeb);
                         MainViewModel.GetInstance().DetailsBox.removeProfileSM(SMWeb);
+                    }
+                    break;
+                case "telegram2":
+                    ProfileSM SMTelegram = Converter.ToProfileSM(tappedItemProfile);
+                    if (SMTelegram.Exist == false)
+                    {
+                        PostProfileSM(Box.BoxId, SMTelegram.ProfileMSId);
+                        SMTelegram.Exist = true;
+                        MainViewModel.GetInstance().ListOfNetworks.updateProfileSM(SMTelegram);
+                        MainViewModel.GetInstance().DetailsBox.addProfileSM(SMTelegram);
+                    }
+                    else
+                    {
+                        DeleteProfileSM(Box.BoxId, SMTelegram.ProfileMSId);
+                        SMTelegram.Exist = false;
+                        MainViewModel.GetInstance().ListOfNetworks.updateProfileSM(SMTelegram);
+                        MainViewModel.GetInstance().DetailsBox.removeProfileSM(SMTelegram);
                     }
                     break;
                 case "whatsapp2":

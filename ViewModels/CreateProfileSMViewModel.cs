@@ -293,7 +293,7 @@
             this.Name = string.Empty;
             this.Link = string.Empty;
 
-            if (mainViewModel.ProfilesBYPESM != null)
+            if (PopupNavigation.PopupStack.Count != 0)
             {
                 await PopupNavigation.Instance.PopAsync();
             }

@@ -237,8 +237,7 @@
         }
         async void RecoverPassword()
         {
-            MainViewModel.GetInstance().PasswordRecovery =
-                new PasswordRecoveryViewModel();
+            MainViewModel.GetInstance().PasswordRecovery = new PasswordRecoveryViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new PasswordRecoveryPage());
         }
         #endregion

@@ -24,9 +24,6 @@
         {
             InitializeComponent();
             NetworksQty = 0;
-            //ReloadConnections();
-            //CheckTimeForeingBox();
-            On<Android>().SetToolbarPlacement(Xamarin.Forms.PlatformConfiguration.AndroidSpecific.ToolbarPlacement.Bottom);
             OSAppTheme currentTheme = App.Current.RequestedTheme;
             if (currentTheme == OSAppTheme.Dark)
             {
@@ -46,18 +43,10 @@
             On<Windows>().SetHeaderIconsEnabled(true);
             On<Windows>().SetHeaderIconsSize(new Size(50, 50));
             BackgroundColor = Color.Transparent;
-            if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
-            {
-                Children.Add(new ProfilesPage { IconImageSource = "Networks_icon" });
-                Children.Add(new HomePage { IconImageSource = "Home_icon" });
-                Children.Add(new ListForeignBoxPage { IconImageSource = "Connections_icon" });
-            }
-            else if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android)
-            {
-                Children.Add(new ProfilesPage { IconImageSource = "networks_icon.png" });
-                Children.Add(new HomePage { IconImageSource = "home_icon.png" });
-                Children.Add(new ListForeignBoxPage { IconImageSource = "connections_icon.png" });
-            }
+
+            Children.Add(new ProfilesPage { IconImageSource = "networks_icon2.png" });
+            Children.Add(new HomePage { IconImageSource = "home_icon2.png" });
+            Children.Add(new ListForeignBoxPage { IconImageSource = "connections_icon2.png" });
 
             NetworksQty += GetEmailQty();
             NetworksQty += GetPhoneQty();

@@ -54,7 +54,7 @@
                         Aspect="AspectFill"
                         WidthRequest="1000"
                         HeightRequest="1000"
-                        Source = "{Binding ImageSource}">
+                        Source = "{Binding ImageSource, Mode=TwoWay}">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command = "{Binding ChangeImageCommand}" />
                         </Image.GestureRecognizers>

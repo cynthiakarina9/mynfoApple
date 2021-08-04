@@ -57,7 +57,7 @@ namespace mynfo.Services
                 {
                     var nFCNdefTag = tags[0];
                     session.ConnectToTag(nFCNdefTag, CompletionHandler);
-                    string dominio = "http://boxweb1.azurewebsites.net/";
+                    string dominio = "http://boxweb.azurewebsites.net/";
                     string user = MainViewModel.GetInstance().User.UserId.ToString();
                     string tag_id = "";
                     string url = dominio + "index3.aspx?user_id=" + user + "&tag_id=" + tag_id;
@@ -74,7 +74,10 @@ namespace mynfo.Services
                     AppDelegate.user_id_tag = "?";
                 }
                 AppDelegate.user_id_tag = "?";
-                PopupNavigation.Instance.PopAsync();
+                if(PopupNavigation.PopupStack.Count != 0)
+                {
+                    PopupNavigation.Instance.PopAllAsync();
+                }                
                 session.InvalidateSession();
                 _tagSession.InvalidateSession();
                 PopupNavigation.Instance.PushAsync(new Stickerconfig());
