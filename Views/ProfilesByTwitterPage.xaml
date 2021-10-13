@@ -7,14 +7,13 @@
              BindingContext = "{Binding Main, Source = {StaticResource Locator}}">
     <NavigationPage.TitleView>
         <Grid
-            BindingContext="{Binding ProfilesByTwitter}">
+            BindingContext="{Binding ProfilesByTwitter}"
+            Margin = "50,0,50,0"
+            HorizontalOptions = "Center"
+            VerticalOptions = "End">
             <ImageButton
                 BackgroundColor = "Transparent"
-                Command="{Binding BackHomeCommand}"
-                Grid.ColumnSpan = "3"
-                Margin = "0,0,70,0"
-                HorizontalOptions = "Center"
-                VerticalOptions = "Center"
+                Command="{Binding BackHomeCommand}"                
                 WidthRequest = "100"
                 x:Name="Logosuperior"/>
         </Grid>
@@ -47,6 +46,7 @@
                     </ActivityIndicator>
                     <!-- Lista -->
                     <ListView 
+                        BackgroundColor="{AppThemeBinding Dark=Transparent}"
                         ItemsSource="{Binding profileSM}"
                         Grid.Row="1"
                         SelectedItem="{Binding selectedProfile}"

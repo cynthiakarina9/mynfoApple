@@ -265,7 +265,7 @@
     <value>Toque a imagem para alterá-la.</value>
   </data>
   <data name="FirstNameLabel" xml:space="preserve">
-    <value>Nomes</value>
+    <value>Nomes:</value>
   </data>
   <data name="FirstNamePlaceHolder" xml:space="preserve">
     <value>Digite os nomes...</value>
@@ -274,7 +274,7 @@
     <value>Você deve digitar o nome(s)</value>
   </data>
   <data name="LastNameLabel" xml:space="preserve">
-    <value>Sobrenome</value>
+    <value>Sobrenome:</value>
   </data>
   <data name="LastNamePlaceHolder" xml:space="preserve">
     <value>Insira sobrenomes...</value>
@@ -701,7 +701,7 @@ Você deve inserir um url</value>
     <value>Código inválido.</value>
   </data>
   <data name="MessageWhatsApp" xml:space="preserve">
-    <value>Olá!, conheci você através do mynfo, sou </value>
+    <value>Olá!,%20conheci%20você%20através%20do%20mynfo,%20sou%20</value>
   </data>
   <data name="MyTAGValidation" xml:space="preserve">
     <value>Este myTAG está vinculada a outro usuário!</value>
@@ -749,5 +749,23 @@ NOTA: A área do telefone onde você deve colocar o myTAG para configurá-lo pod
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Bem vindo ao mynfo!</value>
+  </data>
+  <data name="FirtScan" xml:space="preserve">
+    <value>Primeiro digitalize esta etiqueta para escrevê-la!</value>
+  </data>
+  <data name="myTAGOtherUser" xml:space="preserve">
+    <value>Esta tag está ligada a outro usuário!</value>
+  </data>
+  <data name="AllBoxes" xml:space="preserve">
+    <value>Você já criou o número de Caixas permitidas.</value>
+  </data>
+  <data name="NoDeleteDefaultBox" xml:space="preserve">
+    <value>Você não pode excluir uma caixa padrão.</value>
+  </data>
+  <data name="ScanTag" xml:space="preserve">
+    <value>Sobre seu myTAG por alguns segundos.</value>
+  </data>
+  <data name="TagReady" xml:space="preserve">
+    <value>MyTAG configurado!</value>
   </data>
 </root>

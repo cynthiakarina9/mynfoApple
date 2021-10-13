@@ -44,35 +44,42 @@
                                     <ColumnDefinition Width="50*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="20*"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="80*"/>
                                 </Grid.RowDefinitions>
                                 <Grid
                                     Grid.Column="0"
-                                    Grid.Row="0">
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Margin="0,0,0,20"
+                                    VerticalOptions="FillAndExpand">
                                     <Label                                         
                                         FontAttributes="Bold"
                                         FontSize = "15"                                    
-                                        HorizontalTextAlignment="Start"                                    
+                                        HorizontalTextAlignment="Start"
                                         TextColor = "{StaticResource MainColor}" 
-                                        VerticalOptions="FillAndExpand"
                                         x:Name="ForeignUserName"/>
                                 </Grid>
-                                <Frame
-                                    CornerRadius="50"
-                                    HeightRequest="60"
+                                <Grid
                                     Grid.Column="0"
                                     Grid.Row="1"
-                                    WidthRequest="70"
-                                    IsClippedToBounds="True"
-                                    HasShadow="False"
-                                    Margin="5">
-                                    <Image                
-                                        Aspect="AspectFill"
-                                        Margin="-20"
-                                        x:Name="ForeignUserImage">
-                                    </Image>
-                                </Frame>
+                                    HorizontalOptions="CenterAndExpand"
+                                    Margin="0,20,0,0"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Frame
+                                        CornerRadius="47"
+                                        HeightRequest="55"                                        
+                                        WidthRequest="55"
+                                        IsClippedToBounds="True"
+                                        HasShadow="False">
+                                        <Image                
+                                            Aspect="AspectFill"
+                                            Margin="-20"
+                                            x:Name="ForeignUserImage">
+                                        </Image>
+                                    </Frame>
+                                </Grid>
+                                
                                 <Grid
                                     Grid.Column="1"
                                     Grid.RowSpan="2">

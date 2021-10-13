@@ -1,14 +1,14 @@
 ﻿namespace mynfo.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
     using Domain;
+    using GalaSoft.MvvmLight.Command;
     using Helpers;
-    using Views;
     using Services;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using Views;
     using Xamarin.Forms;
 
     public class EditProfilePhoneViewModel : BaseViewModel
@@ -50,8 +50,7 @@
         public EditProfilePhoneViewModel(int _ProfilePhoneId)
         {
             apiService = new ApiService();
-            GetProfilePhone(_ProfilePhoneId);
-            this.isEnabled = true;
+            GetProfilePhone(_ProfilePhoneId);            
         }
         #endregion
 
@@ -180,7 +179,7 @@
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            MainViewModel.GetInstance().ProfilesByPhone.removeProfile();
+            MainViewModel.GetInstance().Profiles.removeProfilePhone();
 
             await App.Navigator.PopAsync();
         }

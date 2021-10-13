@@ -9,12 +9,13 @@
         <Grid>
             <Grid BindingContext = "{Binding Home}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35*"/>
-                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="70*"/>
                 </Grid.RowDefinitions>
                 <!-- Información del usuario -->
                 <StackLayout
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    VerticalOptions="FillAndExpand">
                     <RefreshView
                         IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                         Command="{Binding RefreshCommand}"
@@ -33,7 +34,8 @@
                                 <StackLayout
                                     Grid.Column="0"
                                     Grid.Row="0">
-                                    <Frame BorderColor="{StaticResource MainColor}"
+                                    <Frame 
+                                        BorderColor="{StaticResource MainColor}"
                                         WidthRequest="100"
                                         HeightRequest="100" 
                                         CornerRadius="50"
@@ -122,14 +124,14 @@
                                 </StackLayout>
                                 <!-- Línea para separar -->
                                 <StackLayout
-                                Grid.ColumnSpan="2"
-                                Grid.Column="0"
-                                Grid.Row="1">
+                                    Grid.ColumnSpan="2"
+                                    Grid.Column="0"
+                                    Grid.Row="1">
                                     <Line
-                                    HeightRequest="1"
-                                    BackgroundColor="{AppThemeBinding Light=#d8dce3, 
-                                    Dark={StaticResource Menu_BackgroundColorDark}}"
-                                    Margin="30,0,30,27"/>
+                                        HeightRequest="1"
+                                        BackgroundColor="{AppThemeBinding Light=#d8dce3, 
+                                        Dark={StaticResource Menu_BackgroundColorDark}}"
+                                        Margin="30,0,30,27"/>
                                 </StackLayout>
                             </Grid>
                         </ScrollView>
@@ -137,7 +139,8 @@
                 </StackLayout>
                 <!-- Boxes -->
                 <StackLayout
-                    Grid.Row="1">
+                    Grid.Row="1"
+                    VerticalOptions="FillAndExpand">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50*"/>
@@ -146,11 +149,12 @@
                         </Grid.RowDefinitions>
                         <!-- Box predeterminada -->
                         <StackLayout
-                            Grid.Row="0">
+                            Grid.Row="0"
+                            VerticalOptions="FillAndExpand">
                             <CollectionView 
-                            ItemsSource="{Binding Box}"
-                            SelectionChanged="OnCollectionViewSelectionChanged"
-                            SelectionMode="Single">
+                                ItemsSource="{Binding Box}"
+                                SelectionChanged="OnCollectionViewSelectionChanged"
+                                SelectionMode="Single">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout 
                                     Orientation="Vertical"
@@ -193,7 +197,9 @@
                         </StackLayout>
                         <!-- Boxes -->
                         <StackLayout
-                         Grid.Row="1">
+                            Grid.Row="1"
+                            Margin="0,-10,0,5"
+                            VerticalOptions="FillAndExpand">
                             <CollectionView  
                                 ItemsSource="{Binding BoxNoDefault}"
                                 SelectionMode="Single"
@@ -202,8 +208,8 @@
                                 x:Name="BoxCollectionView">
                                 <CollectionView.ItemsLayout>
                                     <GridItemsLayout 
-                                    Orientation="Vertical"
-                                    Span="3" />
+                                        Orientation="Vertical"
+                                        Span="3" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -228,25 +234,21 @@
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-                            <!--Carga-->
-                            <ActivityIndicator
-                                IsRunning="{Binding IsRunning, Mode = TwoWay}"
-                                VerticalOptions="CenterAndExpand">
-                            </ActivityIndicator>
-                        </StackLayout>
-                        <!-- Botón de más -->
-                        <StackLayout
-                            Grid.Row="2">
                         </StackLayout>
                     </Grid>
                 </StackLayout>
             </Grid>
+            <!--Carga-->
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning, Mode = TwoWay}"
+                VerticalOptions="CenterAndExpand">
+            </ActivityIndicator>
+            <!-- Botón de más -->
             <ImageButton
                 BackgroundColor = "Transparent"
                 Clicked = "CreateBox_Clicked"
                 HeightRequest = "50"
-                HorizontalOptions ="CenterAndExpand"
-                IsVisible="{Binding VisibleButton}"
+                HorizontalOptions ="CenterAndExpand"                
                 Margin="15"
                 Source = "Plus"
                 VerticalOptions="End"

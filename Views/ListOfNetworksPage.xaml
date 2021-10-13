@@ -40,9 +40,19 @@
                             Command="{Binding GotoAddCommand}"
                             Grid.RowSpan="2"
                             HeightRequest="40"
+                            HorizontalOptions="Start"
+                            IsEnabled="true"
+                            Source="TypesProfiles_Icon"
+                            VerticalOptions="Start"
+                            WidthRequest="40"/>
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            Command="{Binding GoBackCommand}"
+                            Grid.RowSpan="2"
+                            HeightRequest="40"
                             HorizontalOptions="End"
                             IsEnabled="true"
-                            Source="tipos"
+                            Source="check.png"
                             VerticalOptions="Start"
                             WidthRequest="40"/>
                         <ActivityIndicator

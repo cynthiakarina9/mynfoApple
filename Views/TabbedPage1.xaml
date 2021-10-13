@@ -1,20 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="mynfo.Views.TabbedPage1"
+             x:Class="mynfo.Views.TabbedPage1"             
              BarTextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
+             BarBackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
              SelectedTabColor="#FF5521"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
              UnselectedTabColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
              x:Name="BackG">
     <NavigationPage.TitleView>
-        <Grid>
-            <StackLayout
-                Padding = "0,0,70,0">
-                <ImageButton
-                    BackgroundColor = "Transparent"
-                    WidthRequest = "100" 
-                    x:Name="Logosuperior"/>
-            </StackLayout>
+        <Grid
+            HorizontalOptions = "Center"
+            Margin="50,0,50,0"
+            VerticalOptions = "End">
+            <ImageButton
+                BackgroundColor = "Transparent"                 
+                WidthRequest = "100" 
+                x:Name="Logosuperior"/>
         </Grid>
     </NavigationPage.TitleView>
 </TabbedPage>

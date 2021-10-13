@@ -8,10 +8,7 @@
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TAGPage : ContentPage
-    {
-        #region Attributes
-        private Label uno = new Label();
-        #endregion
+    {        
         public static bool write_nfc = false;
 
         public TAGPage()
@@ -27,11 +24,9 @@
                 Logosuperior.Source = "logo_superior3.png";
             }
 
-            uno.Text = Languages.ConfigureTAG;
-            uno.TextColor = Color.FromHex("#FF5521");
-            uno.FontSize = 22;
-            Press.Text = Languages.Push + " '" + uno.Text + "' " + Languages.AndStick;
+            Press.Text = Languages.Push + " '" + Languages.ConfigureTAG + "' " + Languages.AndStick;
         }
+
         void escribir_tag(object sender, EventArgs e)
         {
             try

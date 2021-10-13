@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:mynfo.Helpers"
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              x:Class="mynfo.Views.DetailBoxPopUpPage"
              BindingContext = "{Binding Main, Source={StaticResource Locator}}"
              x:Name="FrameB">
@@ -57,12 +58,13 @@
                             VerticalOptions="Center"
                             WidthRequest="200"/>
                         <!--Box predeterminada-->
-                        <StackLayout 
+                        <input:CheckBox 
                             Grid.Row="2"
                             Grid.Column="1"
                             Margin="20,-6,0,0"
                             VerticalOptions="Center"
-                            x:Name="BoxDefaultCheckBox" />
+                            CheckChanged ="CheckDefaultBox"                            
+                            x:Name="BxDefaultCheckBox"/>
                         <Label 
                             Grid.Row="2" 
                             Grid.Column="2" 

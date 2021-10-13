@@ -10,6 +10,7 @@
             BindingContext = "{Binding Login}">
             <ScrollView>
                 <StackLayout
+                    Grid.Row="0"
                     Padding = "15">
                     <StackLayout
                         HorizontalOptions = "CenterAndExpand"
@@ -23,7 +24,7 @@
                             FontAttributes = "Bold"
                             FontSize = "20"
                             HorizontalOptions = "Center"
-                            Text = "Mynfo"
+                            Text = "mynfo"
                             TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"/>
                     </StackLayout>
                     <Label 
@@ -119,12 +120,13 @@
                             <TapGestureRecognizer Command="{Binding RecoverPasswordCommand}"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <ActivityIndicator
-                        IsRunning = "{Binding IsRunning, Mode=TwoWay}"
-                        VerticalOptions = "CenterAndExpand">
-                    </ActivityIndicator>
                 </StackLayout>
             </ScrollView>
+            <ActivityIndicator
+                Grid.Row="0"
+                IsRunning = "{Binding IsRunning, Mode=TwoWay}"
+                VerticalOptions = "CenterAndExpand">
+            </ActivityIndicator>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

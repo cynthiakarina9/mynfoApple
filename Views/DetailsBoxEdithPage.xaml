@@ -4,9 +4,9 @@
                  xmlns:i18n="clr-namespace:mynfo.Helpers"
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  x:Class="mynfo.Views.DetailsBoxEdithPage"
-             x:Name="FullBackGround"
-             BackgroundColor="Transparent"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+                 x:Name="FullBackGround"
+                 BackgroundColor="Transparent"
+                 BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <Frame
             BindingContext="{Binding DetailsBoxEdith}"
@@ -24,12 +24,12 @@
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <!--Botón para borrar box-->
                         <ImageButton 
-                            BackgroundColor="Transparent"
+                            BackgroundColor="Transparent"                            
                             Grid.Column ="3"
                             Grid.Row="0"
                             Grid.RowSpan="2"
@@ -37,20 +37,22 @@
                             HorizontalOptions="End"
                             Padding="5"
                             VerticalOptions="Start"
-                            WidthRequest="40"
-                            x:Name="DeleteButton" />
+                            WidthRequest="40" 
+                            x:Name="DeleteButton"/>
                         <ImageButton
-                            HorizontalOptions="Start"
-                            Grid.Column ="0"
-                            Grid.Row="1"
-                            Padding="5"
                             BackgroundColor="Transparent"
-                            BorderWidth="1"
+                            Grid.Column ="0"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
                             HeightRequest="40"
+                            HorizontalOptions="Start"
+                            Padding="5"
+                            VerticalOptions="Start"
                             WidthRequest="40"
                             x:Name="ColorBtn"/>
                         <!--Nombre de la box -->
                         <Entry 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontAttributes="Bold"
                             FontSize="25"
                             Grid.ColumnSpan="4"

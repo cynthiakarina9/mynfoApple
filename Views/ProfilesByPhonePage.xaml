@@ -7,14 +7,13 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <NavigationPage.TitleView>
         <Grid
-            BindingContext="{Binding ProfilesByPhone}">
+            BindingContext="{Binding ProfilesByPhone}"
+            Margin = "50,0,50,0"
+            HorizontalOptions = "Center"
+            VerticalOptions = "End">
             <ImageButton
                 BackgroundColor = "Transparent"
-                Command="{Binding BackHomeCommand}"
-                Grid.ColumnSpan = "3"
-                Margin = "0,0,70,0"
-                HorizontalOptions = "Center"
-                VerticalOptions = "Center"
+                Command="{Binding BackHomeCommand}"                
                 WidthRequest = "100"
                 x:Name="Logosuperior"/>
         </Grid>
@@ -46,6 +45,7 @@
                         VerticalOptions="StartAndExpand">
                     </ActivityIndicator>
                     <ListView 
+                        BackgroundColor="{AppThemeBinding Dark=Transparent}"
                         ItemsSource="{Binding profilephone}"
                         Grid.Row="1"
                         GroupDisplayBinding="{Binding Name}"

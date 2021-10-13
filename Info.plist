@@ -7,9 +7,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.mynfoA</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.8</string>
+	<string>1.21</string>
 	<key>CFBundleVersion</key>
-	<string>1.8</string>
+	<string>1.21</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -42,7 +42,7 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to photos.</string>
+	<string>This application needs access to photos to choose photos from your library for your profile picture and save profile pictures taken by the camera in the gallery.</string>
 	<key>NFCReaderUsageDescription</key>
 	<string>NFC tag to read NDEF messages into the application</string>
 	<key>NSContactsUsageDescription</key>
@@ -64,8 +64,10 @@
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to the camera to take the photo for the user profile and read QR codes.</string>
+	<string>This application needs access to the camera to take photos for the user profile photo and read QR codes.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app needs access to the gallery to select a photo for the user profile.</string>
+	<string>This application needs access to photos to choose photos from your library for your profile picture and save profile pictures taken by the camera in the gallery.</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

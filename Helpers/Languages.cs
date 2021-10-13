@@ -9,16 +9,8 @@
     {
         static Languages()
         {
-
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                Resource.Culture = CultureInfo.CurrentCulture;
-            }
-            else if (Device.RuntimePlatform == Device.Android)
-            {
-                Resource.Culture = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
-            }
-
+            Resource.Culture = CultureInfo.CurrentCulture;
+            
             DependencyService.Get<ILocalize>().SetLocale(Resource.Culture);
         }
 
@@ -878,6 +870,30 @@
         public static string DoNotShowAgain
         {
             get { return Resource.DoNotShowAgain; }
+        }
+        public static string myTAGOtherUser
+        {
+            get { return Resource.myTAGOtherUser; }
+        }
+        public static string FirtScan
+        {
+            get { return Resource.FirtScan; }
+        }
+        public static string AllBoxes
+        {
+            get { return Resource.AllBoxes; }
+        }
+        public static string NoDeleteDefaultBox
+        {
+            get { return Resource.NoDeleteDefaultBox; }
+        }
+        public static string TagReady
+        {
+            get { return Resource.TagReady; }
+        }
+        public static string ScanTag
+        {
+            get { return Resource.ScanTag; }
         }
     }
 }

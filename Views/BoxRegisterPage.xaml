@@ -7,14 +7,14 @@
              BindingContext = "{Binding Main, Source = {StaticResource Locator}}">
     <NavigationPage.TitleView>
         <Grid
-            BindingContext="{Binding BoxRegister}">
+            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
+            BindingContext="{Binding BoxRegister}"
+            Margin = "50,0,50,0"
+            HorizontalOptions = "Center"
+            VerticalOptions = "End">
             <ImageButton
                 BackgroundColor = "Transparent"
-                Command="{Binding BackHomeCommand}"
-                Grid.ColumnSpan = "3"
-                Margin = "0,0,70,0"
-                HorizontalOptions = "Center"
-                VerticalOptions = "Center"
+                Command="{Binding BackHomeCommand}"                
                 WidthRequest = "100"
                 x:Name="Logosuperior"/>
         </Grid>
@@ -37,6 +37,7 @@
                     TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
                     VerticalOptions = "Center" />
                 <Entry 
+                    BackgroundColor="{AppThemeBinding Dark=Transparent}"
                     FontSize = "21"
                     Grid.Row = "2"
                     HeightRequest = "80"

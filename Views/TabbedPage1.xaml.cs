@@ -1,39 +1,47 @@
 ﻿namespace mynfo.Views
 {
     using Models;
-    using Services;
-    using ViewModels;
+    using mynfo.Domain;
     using Rg.Plugins.Popup.Services;
+    using Services;
     using System;
     using System.Collections.Generic;
-    using System.Data.SqlClient;
+    using System.Threading.Tasks;
+    using ViewModels;
     using Xamarin.Forms;
     using Xamarin.Forms.PlatformConfiguration;
-    using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
     using Xamarin.Forms.PlatformConfiguration.WindowsSpecific;
     using Xamarin.Forms.Xaml;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabbedPage1
     {
+        #region Attributes
+        ApiService apiService;
+        #endregion
 
         #region Properties
         public int NetworksQty { get; set; }
         #endregion
 
         public TabbedPage1()
-        {
+        {            
             InitializeComponent();
             NetworksQty = 0;
+            apiService = new ApiService();
             OSAppTheme currentTheme = App.Current.RequestedTheme;
+            
             if (currentTheme == OSAppTheme.Dark)
-            {
+            {                       
                 Logosuperior.Source = "logo_superior2.png";
-                BackG.BarBackgroundColor = Color.FromHex("#222b3a");
+                //BarBackgroundColor = Color.FromHex("#222b3a");
+                
+                //BarBackgroundColor = Color.FromHex("#222b3a");
             }
             else
             {
                 Logosuperior.Source = "logo_superior3.png";
-                BackG.BarBackgroundColor = Color.FromHex("#FFFFFF");
+                //BarBackgroundColor = Color.FromHex("#FFFFFF");
             }
 
             var mainViewModel = MainViewModel.GetInstance();
@@ -44,17 +52,22 @@
             On<Windows>().SetHeaderIconsSize(new Size(50, 50));
             BackgroundColor = Color.Transparent;
 
-            Children.Add(new ProfilesPage { IconImageSource = "networks_icon2.png" });
-            Children.Add(new HomePage { IconImageSource = "home_icon2.png" });
-            Children.Add(new ListForeignBoxPage { IconImageSource = "connections_icon2.png" });
+            Children.Add(new ProfilesPage { IconImageSource = "Networks_icon" });
+            Children.Add(new HomePage { IconImageSource = "Home_icon" });
+            Children.Add(new ListForeignBoxPage { IconImageSource = "Connections_icon" });
 
-            NetworksQty += GetEmailQty();
-            NetworksQty += GetPhoneQty();
-            NetworksQty += GetWhatsAppQty();
-            NetworksQty += GetSocialMediaQty();
+            StartChildren();
+        }
+
+        private async void StartChildren()
+        {
+            await GetEmailQty();
+            await GetPhoneQty();
+            await GetWhatsAppQty();
+            await GetSocialMediaQty();
             CheckIntroductionBool();
 
-            if (NetworksQty > 1)
+            if (NetworksQty == 1)
             {
                 CurrentPage = Children[1];
             }
@@ -63,122 +76,69 @@
                 CurrentPage = Children[0];
             }
         }
-
-
-        private int GetEmailQty()
+        private async Task<int> GetEmailQty()
         {
-            System.Text.StringBuilder sb;
-            int userId = MainViewModel.GetInstance().User.UserId;
-            string cadenaConexion = @"data source=serverappmynfo.database.windows.net;initial catalog=mynfo;user id=adminmynfo;password=4dmiNFC*Atx2020;Connect Timeout=60";
-            string queryGetProfiles = "select * from dbo.ProfileEmails where dbo.ProfileEmails.UserId = " + userId;
-            int netQty = 0;
-            using (SqlConnection connection = new SqlConnection(cadenaConexion))
+            var apiSecurity = App.Current.Resources["APISecurity"].ToString();
+            
+            var listEmail = new List<ProfileEmail>();
+            listEmail = await this.apiService.GetListByUser<ProfileEmail>(
+                apiSecurity,
+                "/api",
+                "/ProfileEmails",
+                MainViewModel.GetInstance().User.UserId);
+            if(listEmail.Count != 0)
             {
-                sb = new System.Text.StringBuilder();
-                sb.Append(queryGetProfiles);
-                string sql = sb.ToString();
-
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            netQty++;
-                        }
-                    }
-                    connection.Close();
-                }
+                NetworksQty++;
             }
-            return netQty;
+            return NetworksQty;
         }
 
-        private int GetPhoneQty()
-        {
-            System.Text.StringBuilder sb;
-            int userId = MainViewModel.GetInstance().User.UserId;
-            string cadenaConexion = @"data source=serverappmynfo.database.windows.net;initial catalog=mynfo;user id=adminmynfo;password=4dmiNFC*Atx2020;Connect Timeout=60";
-            string queryGetProfiles = "select * from dbo.ProfilePhones where dbo.ProfilePhones.UserId = " + userId;
-            int netQty = 0;
-            using (SqlConnection connection = new SqlConnection(cadenaConexion))
+        private async Task<int> GetPhoneQty()
+        {            
+            var apiSecurity = App.Current.Resources["APISecurity"].ToString();            
+            var listPhone = new List<ProfilePhone>();
+            listPhone = await this.apiService.GetListByUser<ProfilePhone>(
+                apiSecurity,
+                "/api",
+                "/ProfilePhones",
+                MainViewModel.GetInstance().User.UserId);
+            if (listPhone.Count != 0)
             {
-                sb = new System.Text.StringBuilder();
-                sb.Append(queryGetProfiles);
-                string sql = sb.ToString();
-
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            netQty++;
-                        }
-                    }
-                    connection.Close();
-                }
+                NetworksQty++;
             }
-            return netQty;
+            return NetworksQty;
         }
 
-        private int GetWhatsAppQty()
-        {
-            System.Text.StringBuilder sb;
-            int userId = MainViewModel.GetInstance().User.UserId;
-            string cadenaConexion = @"data source=serverappmynfo.database.windows.net;initial catalog=mynfo;user id=adminmynfo;password=4dmiNFC*Atx2020;Connect Timeout=60";
-            string queryGetProfiles = "select * from dbo.ProfileWhatsapps where dbo.ProfileWhatsapps.UserId = " + userId;
-            int netQty = 0;
-            using (SqlConnection connection = new SqlConnection(cadenaConexion))
+        private async Task<int> GetWhatsAppQty()
+        {            
+            var apiSecurity = App.Current.Resources["APISecurity"].ToString();            
+            var listWhatsapp = new List<ProfileWhatsapp>();
+            listWhatsapp = await this.apiService.GetListByUser<ProfileWhatsapp>(
+                apiSecurity,
+                "/api",
+                "/ProfileWhatsapps",
+                MainViewModel.GetInstance().User.UserId);
+            if (listWhatsapp.Count != 0)
             {
-                sb = new System.Text.StringBuilder();
-                sb.Append(queryGetProfiles);
-                string sql = sb.ToString();
-
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            netQty++;
-                        }
-                    }
-                    connection.Close();
-                }
+                NetworksQty++;
             }
-            return netQty;
+            return NetworksQty;
         }
 
-        private int GetSocialMediaQty()
-        {
-            System.Text.StringBuilder sb;
-            int userId = MainViewModel.GetInstance().User.UserId;
-            string cadenaConexion = @"data source=serverappmynfo.database.windows.net;initial catalog=mynfo;user id=adminmynfo;password=4dmiNFC*Atx2020;Connect Timeout=60";
-            string queryGetProfiles = "select * from dbo.ProfileSMs where dbo.ProfileSMs.UserId = " + userId;
-            int netQty = 0;
-            using (SqlConnection connection = new SqlConnection(cadenaConexion))
+        private async Task<int> GetSocialMediaQty()
+        {            
+            var apiSecurity = App.Current.Resources["APISecurity"].ToString();            
+            var listSM = new List<ProfileSM>();
+            listSM = await this.apiService.GetListByUser<ProfileSM>(
+                apiSecurity,
+                "/api",
+                "/ProfileSMs",
+                MainViewModel.GetInstance().User.UserId);
+            if (listSM.Count != 0)
             {
-                sb = new System.Text.StringBuilder();
-                sb.Append(queryGetProfiles);
-                string sql = sb.ToString();
-
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            netQty++;
-                        }
-                    }
-                    connection.Close();
-                }
+                NetworksQty++;
             }
-            return netQty;
+            return NetworksQty;
         }
 
         /// <summary>

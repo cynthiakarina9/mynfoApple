@@ -50,6 +50,7 @@
                                 TextColor = "{StaticResource MainColor}"
                                 VerticalOptions = "Center"/>
                             <Entry 
+                                BackgroundColor="{AppThemeBinding Dark=Transparent}"
                                 FontSize = "20"
                                 HorizontalTextAlignment = "Center"
                                 HeightRequest = "46"
@@ -81,6 +82,7 @@
                                 Text = "{i18n:Translate EMail}"
                                 TextColor = "{StaticResource MainColor}" />
                             <Entry 
+                                BackgroundColor="{AppThemeBinding Dark=Transparent}"
                                 FontSize = "20"
                                 HorizontalTextAlignment = "Center"
                                 HeightRequest = "46"
@@ -112,7 +114,7 @@
                     HeightRequest = "50"
                     Margin="15"
                     Text = "{i18n:Translate Save}"
-                    TextColor="{AppThemeBinding Light={StaticResource Dark_FontColor}, Dark={StaticResource Light_FontColor}}"
+                    TextColor="{AppThemeBinding Light={StaticResource Dark_FontColor}, Dark={StaticResource FontColorButtonDark}}"
                     VerticalOptions = "End"
                     x:Name="Save"/>
             </Grid>

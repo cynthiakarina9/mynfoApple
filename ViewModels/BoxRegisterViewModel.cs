@@ -5,6 +5,7 @@
     using Helpers;
     using Services;
     using System;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Views;
     using Xamarin.Forms;
@@ -16,6 +17,7 @@
         #endregion
 
         #region Atributtes
+        private bool visibleButton;
         private bool isRunning;
         private bool isEnabled;
         #endregion
@@ -37,6 +39,11 @@
             get;
             set;
         }
+        public bool VisibleButton
+        {
+            get { return this.visibleButton; }
+            set { SetValue(ref this.visibleButton, value); }
+        }
         #endregion
 
         #region Constructors
@@ -45,6 +52,32 @@
             this.apiService = new ApiService();
 
             this.IsEnabled = true;
+        }
+        #endregion
+
+        #region Methods
+        public async Task<bool> GetBoxCount()
+        {
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+            var BoxCount = await this.apiService.GetBoxCount(
+                apiSecurity,
+                "/api",
+                "/Boxes/GetBoxCount",
+                MainViewModel.GetInstance().User.UserId);
+            VisibleButton = false;
+            if (BoxCount < 4)
+            {
+                VisibleButton = true;
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.AllBoxes,
+                    Languages.Accept);
+                VisibleButton = false;
+            }
+            return VisibleButton;
         }
         #endregion
 
@@ -151,7 +184,7 @@
 
             this.Name = string.Empty;
             mainViewModel.Home.AddList(A);
-            mainViewModel.Home.GetBoxCount();
+            await mainViewModel.Home.GetBoxCount();
             await App.Navigator.PopAsync();
         }
 

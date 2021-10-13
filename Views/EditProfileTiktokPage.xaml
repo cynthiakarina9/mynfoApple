@@ -7,21 +7,20 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <NavigationPage.TitleView>
         <Grid
-            BindingContext = "{Binding EditProfileTiktok}">
+            BindingContext = "{Binding EdithProfile}"
+            Margin = "50,0,50,0"
+            HorizontalOptions = "Center"
+            VerticalOptions = "End">
             <ImageButton
                 BackgroundColor = "Transparent"
-                Command="{Binding BackHomeCommand}"
-                Grid.ColumnSpan = "3"
-                Margin = "0,0,70,0"
-                HorizontalOptions = "Center" 
-                VerticalOptions = "Center"
+                Command="{Binding BackHomeCommand}"                
                 WidthRequest = "100"
                 x:Name="Logosuperior"/>
         </Grid>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid
-            BindingContext = "{Binding EditProfileTiktok}">
+            BindingContext = "{Binding EdithProfile}">
             <ScrollView>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -73,12 +72,13 @@
                             TextColor = "{StaticResource MainColor}"
                             VerticalOptions = "Center"/>
                         <Entry 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontSize = "21"
                             HorizontalTextAlignment = "Center"
                             HeightRequest = "46"
                             HorizontalOptions = "CenterAndExpand"
                             MaxLength = "20"
-                            Text="{Binding profileSM.ProfileName, Mode=TwoWay}"
+                            Text="{Binding profileSM.ProfileName}"
                             TextColor="{AppThemeBinding Light={StaticResource Light_FontColor}, Dark={StaticResource Dark_FontColor}}"
                             VerticalOptions = "Center" 
                             WidthRequest = "300" >
@@ -103,6 +103,7 @@
                             TextColor = "{StaticResource MainColor}"
                             VerticalOptions = "Center"/>
                         <Entry 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontSize = "21"
                             HorizontalTextAlignment = "Center"
                             HeightRequest = "46"

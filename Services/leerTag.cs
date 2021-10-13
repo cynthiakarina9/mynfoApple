@@ -57,35 +57,50 @@ namespace mynfo.Services
 
         public override void DidInvalidate(NFCNdefReaderSession session, NSError error)
         {
-
-            var readerError = (NFCReaderError)(long)error.Code;
-
-            if (readerError != NFCReaderError.ReaderSessionInvalidationErrorFirstNDEFTagRead &&
-                readerError != NFCReaderError.ReaderSessionInvalidationErrorUserCanceled)
+            try
             {
-                InvokeOnMainThread(() =>
+                var readerError = (NFCReaderError)(long)error.Code;
+
+                if (readerError != NFCReaderError.ReaderSessionInvalidationErrorFirstNDEFTagRead &&
+                    readerError != NFCReaderError.ReaderSessionInvalidationErrorUserCanceled)
                 {
-                    var alertController = UIAlertController.Create("Session Invalidated", error.LocalizedDescription, UIAlertControllerStyle.Alert);
-                    alertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+                    InvokeOnMainThread(() =>
+                    {
+                        var alertController = UIAlertController.Create("Session Invalidated", error.LocalizedDescription, UIAlertControllerStyle.Alert);
+                        alertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                     //DispatchQueue.MainQueue.DispatchAsync(() =>
                     //{
                     //    this.PresentViewController(alertController, true, null);
                     //});
                 });
+                }
+                session.InvalidateSession();
+                session.Dispose();
             }
-            session.InvalidateSession();
-            session.Dispose();
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return;
+            }
         }
 
         string GetRecords(NFCNdefPayload[] records)
         {
-            string record = null;
-            var results = new NFCNdefRecord[records.Length];
-            for (var i = 0; i < records.Length; i++)
+            try
             {
-                record = records[i].Payload.ToString();
+                string record = null;
+                var results = new NFCNdefRecord[records.Length];
+                for (var i = 0; i < records.Length; i++)
+                {
+                    record = records[i].Payload.ToString();
+                }
+                return record;
             }
-            return record;
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
     }
 }

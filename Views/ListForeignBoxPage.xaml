@@ -5,33 +5,8 @@
              BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="mynfo.Views.ListForeignBoxPage">
-    <NavigationPage.TitleView>
-        <Grid
-            HeightRequest = "20">
-            <StackLayout 
-                HorizontalOptions="Start">
-                <Label 
-                    FontAttributes = "Bold"
-                    FontSize = "18"
-                    HorizontalOptions = "Start"
-                    Text = "{i18n:Translate ReceivedBoxes}"
-                    TextColor = "{StaticResource Dark_FontColor}"/>
-            </StackLayout>
-            <StackLayout
-                HorizontalOptions = "End">
-                <ImageButton
-                    BackgroundColor = "Transparent"
-                    Clicked = "BackHome_Clicked"
-                    HeightRequest = "20"
-                    HorizontalOptions = "End"
-                    Source = "logo_superior.png" 
-                    WidthRequest = "75" >
-                </ImageButton>
-            </StackLayout>
-        </Grid>
-    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <Grid
+        <Grid            
             BindingContext="{Binding ListForeignBox}">
             <StackLayout>
                 <StackLayout>
@@ -44,10 +19,12 @@
                         VerticalOptions = "Center"/>
                 </StackLayout>
                 <ListView 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                     ItemsSource="{Binding ForeingBox}"
                     HasUnevenRows="true"
                     ItemTapped="OnListViewItemTapped"
                     SelectedItem="{Binding selectedItem}"
+                    SeparatorVisibility="None"
                     Margin="0"
                     x:Name="ForeignBoxList">
                     <ListView.ItemTemplate>
@@ -70,20 +47,24 @@
                                             <ColumnDefinition Width="40*" />
                                             <ColumnDefinition Width="60*" />
                                         </Grid.ColumnDefinitions>
-                                        <Frame
-                                            CornerRadius="50"
-                                            HeightRequest="60"
-                                            WidthRequest="30"
-                                            IsClippedToBounds="True"
-                                            HasShadow="False"
+                                        <Grid                                            
                                             Grid.Column="0"
-                                            Margin="5">
-                                            <Image                
-                                                Aspect="AspectFill"
-                                                Margin="-20"
-                                                Source="{Binding ImageFullPath}">
-                                            </Image>
-                                        </Frame>
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Frame
+                                                WidthRequest="50"
+                                                HeightRequest="50" 
+                                                CornerRadius="45"
+                                                IsClippedToBounds="True"
+                                                HasShadow="False">
+                                                <Image                
+                                                    Aspect="AspectFill"
+                                                    Margin="-20"
+                                                    Source="{Binding ImageFullPath}">
+                                                </Image>
+                                            </Frame>
+                                        </Grid>
+                                        
                                         <Grid
                                             Grid.Column="1">
                                             <Grid.RowDefinitions>

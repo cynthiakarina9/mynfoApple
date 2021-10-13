@@ -288,10 +288,6 @@
                 Grid.Column="1"
                 Grid.Row="1">
                 <Grid>
-                    <ActivityIndicator
-                        IsRunning = "{Binding IsRunning}"
-                        HorizontalOptions = "CenterAndExpand"
-                        VerticalOptions="Start" />
                     <!-- Lista de perfiles de email -->
                     <Grid
                         x:Name="ProfileListEmail">
@@ -300,7 +296,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <ListView  
+                        <ListView
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileEmail, Mode=TwoWay}"
@@ -351,6 +348,7 @@
                         </ListView>
                         <!--Lista vacia-->
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -381,15 +379,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="Phone"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfilePhone, Mode=TwoWay}"
@@ -439,6 +430,7 @@
                         </ListView>
                         <!--Lista vacia-->
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -469,15 +461,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="Facebook"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView    
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -515,6 +500,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -544,15 +530,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="Instagram"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -591,6 +570,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -620,15 +600,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="LinkedIn"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -669,6 +642,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -698,15 +672,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="SnapChat"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -747,6 +714,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -776,15 +744,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="Spotify"
-                            TextColor="{StaticResource MainColor}"/>-->
-                        <ListView              
+                        <ListView         
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -825,6 +786,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -854,15 +816,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="Telegram"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -901,6 +856,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -930,15 +886,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="TikTok"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -978,6 +927,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -1007,15 +957,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="Twitch"
-                            TextColor="{StaticResource MainColor}"/>-->
-                        <ListView          
+                        <ListView        
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -1056,6 +999,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"                            
                             Grid.Row="1"
@@ -1085,15 +1029,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="Twitter"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -1133,6 +1070,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -1162,15 +1100,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="WebPage"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -1210,6 +1141,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -1239,15 +1171,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            Margin="0,10,0,15"
-                            HorizontalOptions="Center"
-                            Text="Whatsapp"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileWhatsapp, Mode=TwoWay}"
@@ -1297,6 +1222,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -1327,15 +1253,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
-                        <!--<Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            Grid.Row="0"
-                            HorizontalOptions="Center"
-                            Margin="0,10,0,15"
-                            Text="YouTube"
-                            TextColor="{StaticResource MainColor}"/>-->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             Grid.Row="1"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfileSM, Mode=TwoWay}"
@@ -1374,6 +1293,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         <Label
+                            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLigth}, Dark={StaticResource BackgroundColorDark}}"
                             FontAttributes="Bold"
                             FontSize="20"
                             Grid.Row="1"
@@ -1395,6 +1315,10 @@
                             x:Name="ButtonYoutube"/>
                     </Grid>
                 </Grid>
+                <ActivityIndicator
+                    IsRunning = "{Binding IsRunning}"
+                    HorizontalOptions = "CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
             </Grid>
         </Grid>
     </ContentPage.Content>

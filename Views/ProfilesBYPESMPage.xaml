@@ -43,6 +43,7 @@
                             VerticalOptions="CenterAndExpand" />
                         <!-- Lista de perfiles de email -->
                         <ListView  
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -98,6 +99,7 @@
 
                         <!-- Lista de perfiles de teléfono -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemsSource="{Binding ProfilePhone, Mode=TwoWay}"
@@ -154,6 +156,7 @@
 
                         <!-- Lista de Facebook -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -203,6 +206,7 @@
 
                         <!-- Lista de Instagram -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -253,6 +257,7 @@
 
                         <!-- Lista de Linkedin -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -303,6 +308,7 @@
 
                         <!-- Lista de Snapchat -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -353,6 +359,7 @@
 
                         <!-- Lista de Spotify -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -403,6 +410,7 @@
 
                         <!-- Lista de Telegram -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -452,6 +460,7 @@
 
                         <!-- Lista de Tiktok -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -501,6 +510,7 @@
 
                         <!-- Lista de Twitch -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -551,6 +561,7 @@
 
                         <!-- Lista de Twitter -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -601,6 +612,7 @@
 
                         <!-- Lista de WebPage -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -651,6 +663,7 @@
 
                         <!-- Lista de WhatsApp -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -707,6 +720,7 @@
 
                         <!-- Lista de Youtube -->
                         <ListView 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             Grid.Row="0"
                             HasUnevenRows="true"
                             ItemSelected="OnListViewItemSelected"
@@ -757,6 +771,7 @@
 
                         <!--Lista vacia-->
                         <Label
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontAttributes="Bold"
                             FontSize="21"
                             Grid.Row="0"

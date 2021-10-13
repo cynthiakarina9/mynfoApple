@@ -12,6 +12,8 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using System;
+
     public class DetailsBoxViewModel : BaseViewModel
     {
         #region Services
@@ -22,11 +24,13 @@
         private Box box;
         private Color colorB;
         private bool isRunning;
+        private bool isTF, isChecked;
         private ObservableCollection<ProfileEmail> profileEmail;
         private ObservableCollection<ProfilePhone> profilePhone;
         private ObservableCollection<ProfileSM> profileSM;
         private ObservableCollection<ProfileWhatsapp> profileWhatsapp;
         private ObservableCollection<ProfileLocal> profilePerfiles;
+        public int Numer;
         #endregion
 
         #region Properties
@@ -35,7 +39,16 @@
             get { return this.isRunning; }
             set { SetValue(ref this.isRunning, value); }
         }
-
+        public bool IsTF
+        {
+            get { return this.isTF; }
+            set { SetValue(ref this.isTF, value); }
+        }
+        public bool IsCkecked
+        {
+            get { return this.isChecked; }
+            set { SetValue(ref this.isChecked, value); }
+        }
         public Box Box
         {
             get { return this.box; }
@@ -97,10 +110,8 @@
         #region Constructor
         public DetailsBoxViewModel(Box _Box)
         {
-            apiService = new ApiService();
-            
-            GetBox(_Box);
-            
+            apiService = new ApiService();            
+            GetBox(_Box);            
             ProfilePerfiles = new ObservableCollection<ProfileLocal>();
             GetListEmail(_Box.BoxId);
             GetListPhone(_Box.BoxId);
@@ -110,6 +121,8 @@
         #endregion
 
         #region Methods
+
+        #region Box
         public async Task<Box> GetBox(Box _Box)
         {
             this.IsRunning = true;            
@@ -129,14 +142,89 @@
             {
                 Box = _Box;
             }
-            this.IsRunning = false;
+            this.IsRunning = false;            
             return Box;
         }
+
         public Color GetColor(Box _BoxId)
         {        
             ColorB = Color.FromHex(_BoxId.ColorBox);
             return ColorB;
         }
+
+        //Marcar o desmarcar la box predeterminada
+        public async void CheckDefaultBox()
+        {
+            await GetListByUser(Box);
+            if (IsTF == true)
+            {
+                await MainViewModel.GetInstance().Home.GetBoxDefault();
+                await MainViewModel.GetInstance().Home.GetBoxNoDefault();
+            }
+            else
+            {
+                return;
+            }
+        }       
+
+        public async Task<bool> GetListByUser(Box _Box)
+        {
+            try
+            {
+                var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+                var Boxes = await this.apiService.GetBoxListByUser<Box>(
+                            apiSecurity,
+                            "/api",
+                            "/Boxes/GetBoxList",
+                            MainViewModel.GetInstance().User.UserId);                
+                foreach (Box box in Boxes)
+                {
+                    Box box1 = new Box();
+                    if (box.BoxId != _Box.BoxId)
+                    {
+                        box1 = new Box
+                        {
+                            BoxId = box.BoxId,
+                            Name = box.Name,
+                            BoxDefault = false,
+                            UserId = box.UserId,
+                            Time = box.Time,
+                            ColorBox = box.ColorBox
+                        };
+                    }
+                    else
+                    {
+                        box1 = new Box
+                        {
+                            BoxId = box.BoxId,
+                            Name = box.Name,
+                            BoxDefault = true,
+                            UserId = box.UserId,
+                            Time = box.Time,
+                            ColorBox = box.ColorBox
+                        };
+                    }
+                    var result = await this.apiService.PutBox(
+                                apiSecurity,
+                                "/api",
+                                "/Boxes",
+                                box1,
+                                box1.BoxId);                    
+                }
+                await MainViewModel.GetInstance().Home.GetBoxDefault();
+                await MainViewModel.GetInstance().Home.GetBoxNoDefault();
+                IsTF = true;
+
+                return IsTF;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                IsTF = false;
+                return IsTF;
+            }
+        }
+        #endregion
 
         #region Email
         private async Task<ObservableCollection<ProfileEmail>> GetListEmail(int _BoxId)

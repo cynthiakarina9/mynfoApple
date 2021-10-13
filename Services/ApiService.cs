@@ -6,25 +6,34 @@
     using Plugin.Connectivity;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using Xamarin.Essentials;
+
     public class ApiService
     {
         #region connections
         public async Task<Response> CheckConnection()
         {
-            if(!CrossConnectivity.Current.IsConnected)
+            var current = Connectivity.NetworkAccess;
+            //if (!CrossConnectivity.Current.IsConnected)
+            //{
+            //    return new Response { IsSuccess = false, Messagge = "No internet connection" };
+            //}
+            
+            if (!CrossConnectivity.Current.IsConnected || current != NetworkAccess.Internet)
             {
                 return new Response { IsSuccess = false, Messagge = "No internet connection" };
             }
+            //var isReachable = await CrossConnectivity.Current.IsRemoteReachable("http://portal.azure.com");
 
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("http://portal.azure.com");
-
+            var isReachable = await CrossConnectivity.Current.IsReachable("http://portal.azure.com");
             if (!isReachable)
             {
-                return new Response { IsSuccess = false, Messagge = "No internet connection" };
+                return new Response { IsSuccess = false, Messagge = "Internet lento, favor de volver a cargar" };
             }
 
             return new Response { IsSuccess = true };
@@ -86,7 +95,6 @@
         {
             try
             {
-
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(urlBase);
                 var url = string.Format(
@@ -866,6 +874,62 @@
                 };
             }
         }
+
+        public async Task<RedSocial> GetRS(
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            int id)
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = string.Format("{0}{1}/{2}", servicePrefix, controller, id);
+                var response = await client.GetAsync(url);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+                var resp = JsonConvert.DeserializeObject<RedSocial>(result);
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public async Task<User> GetUser(
+           string urlBase,
+           string servicePrefix,
+           string controller,
+           int id)
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = string.Format("{0}{1}{2}", servicePrefix, controller, id);
+                var response = await client.GetAsync(url);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<User>(result);
+            }
+            catch
+            {
+                return null;
+            }
+        }
         #endregion
 
         #region List
@@ -881,6 +945,43 @@
                 client.BaseAddress = new Uri(urlBase);
                 var url = string.Format("{0}{1}/{2}", servicePrefix, controller, id);
                 var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                List<T> list = JsonConvert.DeserializeObject<List<T>>(result);
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<T>> GetBoxListByUser<T>(
+           string urlBase,
+           string servicePrefix,
+           string controller,
+           int id)
+        {
+            try
+            {
+                Box model = new Box()
+                {
+                    UserId = id
+                };
+                var request = JsonConvert.SerializeObject(model);
+                var content = new StringContent(
+                    request,
+                    Encoding.UTF8,
+                    "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = string.Format("{0}{1}", servicePrefix, controller);
+                var response = await client.PostAsync(url, content);
                 var result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)

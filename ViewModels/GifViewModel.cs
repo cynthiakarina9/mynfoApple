@@ -55,13 +55,13 @@
                 case "Facebook":
                     GitImage = "facebook.gif";
                     break;
-                case "LinkedIn":
+                case "Linkedin":
                     GitImage = "linkedin.gif";
                     break;
                 case "Spotify":
                     GitImage = "spotify.gif";
                     break;
-                case "YouTube":
+                case "Youtube":
                     GitImage = "youtube.gif";
                     break;
                 case "BasicIntro":

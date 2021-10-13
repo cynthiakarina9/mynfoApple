@@ -142,6 +142,15 @@ namespace mynfo.Resources1 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have already created the allowed number of boxes..
+        /// </summary>
+        public static string AllBoxes {
+            get {
+                return ResourceManager.GetString("AllBoxes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All the Boxes that you configure and manipulate from now on will be reflected in your myTAG..
         /// </summary>
         public static string AllConfigSticker {
@@ -745,7 +754,7 @@ namespace mynfo.Resources1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Name.
+        ///   Looks up a localized string similar to First Name:.
         /// </summary>
         public static string FirstNameLabel {
             get {
@@ -768,6 +777,15 @@ namespace mynfo.Resources1 {
         public static string FirstNameValidation {
             get {
                 return ResourceManager.GetString("FirstNameValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First scan this Tag to write it!.
+        /// </summary>
+        public static string FirtScan {
+            get {
+                return ResourceManager.GetString("FirtScan", resourceCulture);
             }
         }
         
@@ -961,7 +979,7 @@ namespace mynfo.Resources1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Name.
+        ///   Looks up a localized string similar to Last Name:.
         /// </summary>
         public static string LastNameLabel {
             get {
@@ -1087,7 +1105,7 @@ namespace mynfo.Resources1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hi!, I met you through mynfo, I&apos;m .
+        ///   Looks up a localized string similar to Hi!,%20I%20met%20you%20through%20mynfo,%20I&apos;m%20.
         /// </summary>
         public static string MessageWhatsApp {
             get {
@@ -1137,6 +1155,15 @@ namespace mynfo.Resources1 {
         public static string MyQR {
             get {
                 return ResourceManager.GetString("MyQR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Tag is linked to another user!.
+        /// </summary>
+        public static string myTAGOtherUser {
+            get {
+                return ResourceManager.GetString("myTAGOtherUser", resourceCulture);
             }
         }
         
@@ -1272,6 +1299,15 @@ namespace mynfo.Resources1 {
         public static string NoBoxesYet {
             get {
                 return ResourceManager.GetString("NoBoxesYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot delete a default box..
+        /// </summary>
+        public static string NoDeleteDefaultBox {
+            get {
+                return ResourceManager.GetString("NoDeleteDefaultBox", resourceCulture);
             }
         }
         
@@ -1663,6 +1699,15 @@ namespace mynfo.Resources1 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approach your myTAG for a couple seconds..
+        /// </summary>
+        public static string ScanTag {
+            get {
+                return ResourceManager.GetString("ScanTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search..
         /// </summary>
         public static string Search {
@@ -1805,6 +1850,15 @@ namespace mynfo.Resources1 {
         public static string Tag {
             get {
                 return ResourceManager.GetString("Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MyTAG set!.
+        /// </summary>
+        public static string TagReady {
+            get {
+                return ResourceManager.GetString("TagReady", resourceCulture);
             }
         }
         

@@ -265,7 +265,7 @@
     <value>Touch the image to change it</value>
   </data>
   <data name="FirstNameLabel" xml:space="preserve">
-    <value>First Name</value>
+    <value>First Name:</value>
   </data>
   <data name="FirstNamePlaceHolder" xml:space="preserve">
     <value>Enter the first name</value>
@@ -274,7 +274,7 @@
     <value>You must enter a first name</value>
   </data>
   <data name="LastNameLabel" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Last Name:</value>
   </data>
   <data name="LastNamePlaceHolder" xml:space="preserve">
     <value>Enter the last name...</value>
@@ -700,7 +700,7 @@
     <value>Invalid code.</value>
   </data>
   <data name="MessageWhatsApp" xml:space="preserve">
-    <value>Hi!, I met you through mynfo, I'm </value>
+    <value>Hi!,%20I%20met%20you%20through%20mynfo,%20I'm%20</value>
   </data>
   <data name="MyTAGValidation" xml:space="preserve">
     <value>This myTAG is linked to another user!</value>
@@ -748,5 +748,23 @@ NOTE: The area of your phone where you have to place your myTAG in order to cong
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome to mynfo!</value>
+  </data>
+  <data name="FirtScan" xml:space="preserve">
+    <value>First scan this Tag to write it!</value>
+  </data>
+  <data name="myTAGOtherUser" xml:space="preserve">
+    <value>This Tag is linked to another user!</value>
+  </data>
+  <data name="AllBoxes" xml:space="preserve">
+    <value>You have already created the allowed number of boxes.</value>
+  </data>
+  <data name="NoDeleteDefaultBox" xml:space="preserve">
+    <value>You cannot delete a default box.</value>
+  </data>
+  <data name="ScanTag" xml:space="preserve">
+    <value>Approach your myTAG for a couple seconds.</value>
+  </data>
+  <data name="TagReady" xml:space="preserve">
+    <value>MyTAG set!</value>
   </data>
 </root>

@@ -24,6 +24,7 @@
         private ObservableCollection<Box> box;
         private ObservableCollection<Box> boxNoDefault;
         private string viewsByUser;
+        private int views;
         private bool isRunning;
         private bool isNull;
         private bool moreOne;
@@ -124,7 +125,14 @@
             get { return this.viewsByUser; }
             set { SetValue(ref this.viewsByUser, value); }
         }
-
+        public int Views
+        {
+            get { return views; }
+            private set
+            {
+                SetValue(ref views, value);
+            }
+        }
         public ICommand RefreshCommand { private set; get; }
         #endregion
 
@@ -153,7 +161,8 @@
             GetBoxDefault();
             GetBoxNoDefault();
 
-            ViewsByUser = Convert.ToString(Imprime_box.GetViewsByUser(MainViewModel.GetInstance().User.UserId));
+            var Id = MainViewModel.GetInstance().User.UserId;
+            GetViewsByUser(Id);
 
             RefreshCommand = new Command(async () => await RefreshViewsByUser());
             IsRunning = true;
@@ -161,6 +170,19 @@
         #endregion
 
         #region Methods
+        public async Task<int> GetViewsByUser(int Id)
+        {
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+            var User = await apiService.GetUser(
+                apiSecurity,
+                "/api",
+                "/Users/",
+                Id);
+            Views = User.Conexiones;
+            ViewsByUser = Convert.ToString(Views);
+            return Views;
+        }
+
         public async Task<ObservableCollection<Box>> GetBoxDefault()
         {
             IsRunning = true;
@@ -322,7 +344,7 @@
                 _Box = boxCount;
             }
             MainViewModel.GetInstance().DetailsBox = new DetailsBoxViewModel(_Box);
-            //await App.Navigator.PushAsync(new DetailsBoxPage(_Box));
+            
             await PopupNavigation.Instance.PushAsync(new DetailBoxPopUpPage(_Box));
         }
 
@@ -348,7 +370,8 @@
 
         async Task RefreshViewsByUser()
         {
-            ViewsByUser = Convert.ToString(Imprime_box.GetViewsByUser(MainViewModel.GetInstance().User.UserId));
+            await GetViewsByUser(MainViewModel.GetInstance().User.UserId);
+            ViewsByUser = Convert.ToString(Views);
             IsRefreshing = false;
         }
         #endregion

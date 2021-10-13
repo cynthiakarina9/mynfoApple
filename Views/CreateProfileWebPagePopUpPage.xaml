@@ -50,6 +50,7 @@
                                 TextColor = "{StaticResource MainColor}"
                                 VerticalOptions = "Center"/>
                             <Entry 
+                                BackgroundColor="{AppThemeBinding Dark=Transparent}"
                                 FontSize = "20"
                                 HeightRequest = "46"
                                 HorizontalTextAlignment = "Center"
@@ -81,6 +82,7 @@
                                 TextColor = "{StaticResource MainColor}"
                                 VerticalOptions = "Center"/>
                             <Entry 
+                                BackgroundColor="{AppThemeBinding Dark=Transparent}"
                                 FontSize = "20"
                                 HeightRequest = "46"
                                 HorizontalTextAlignment = "Center"

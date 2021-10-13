@@ -58,6 +58,8 @@
                 SetValue(ref this.qrCode, value);
             }
         }
+
+        public User User { get; set; }
         #endregion
 
         #region Constructor
@@ -77,7 +79,23 @@
                 IsScanning = false;
                 string a = result.Text;
                 string[] b = a.Split('=', '&');
-                if (b.Length != 4)
+                string[] R = a.Split('?');
+                string Id = "";
+                string NameUser = "";
+
+                if (b[1] == "1")
+                {
+                    await GetUser(Convert.ToInt32(b[1]));
+                }
+                else
+                {
+                    Id = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(R[2]));
+                    NameUser = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(R[1]));
+                    await GetUser(Convert.ToInt32(Id));
+                }
+                var U = User;
+                var A = Convert.ToInt32(Id);
+                if (b.Length != 4 && A != U.UserId || NameUser != U.FullName)
                 {
                     await Application.Current.MainPage.DisplayAlert(
                       Languages.Error,
@@ -86,7 +104,15 @@
                     await App.Navigator.PopAsync();
                     return;
                 }
-                await MainViewModel.GetInstance().LectorQR.GetBoxDefault(Convert.ToInt32(b[1]));
+                if (b[1] == "1")
+                {
+                    await GetBoxDefault(Convert.ToInt32(b[1]));
+                }
+                else
+                {
+                    await GetBoxDefault(Convert.ToInt32(Id));
+                }
+
                 result = null;
             });
             IsScanning = true;
@@ -116,10 +142,10 @@
 
             var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
             var UserFornaneo = await this.apiService.GetUserId(
-                apiSecurity,
-                "/api",
-                "/Users/",
-                id);
+                                apiSecurity,
+                                "/api",
+                                "/Users/",
+                                id);
             if (UserFornaneo == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -129,10 +155,10 @@
                 return null;
             }
             var BoxL = await this.apiService.GetBoxDefault<Box>(
-                apiSecurity,
-                "/api",
-                "/Boxes/GetBoxDefault",
-                id);
+                        apiSecurity,
+                        "/api",
+                        "/Boxes/GetBoxDefault",
+                        id);
             if (BoxL == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -149,10 +175,10 @@
             {
                 UserIdToSend = 1;
                 BoxL = await apiService.GetBoxDefault<Box>(
-                apiSecurity,
-                "/api",
-                "/Boxes/GetBoxDefault",
-                UserIdToSend);
+                        apiSecurity,
+                        "/api",
+                        "/Boxes/GetBoxDefault",
+                        UserIdToSend);
 
                 if (BoxL == null)
                 {
@@ -164,8 +190,21 @@
                 }
             }
             await App.Navigator.PopAsync();
-            Imprime_box.InsertForeignData(UserIdToSend, BoxL.BoxId);
-            return Box;
+            MainViewModel.GetInstance().Imprime_box = new Imprime_box();
+            MainViewModel.GetInstance().Imprime_box.InsertForeignData(UserIdToSend, BoxL.BoxId);
+            return BoxL;
+        }
+
+        public async Task<User> GetUser(int id)
+        {
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+            //Get User
+            User = await apiService.GetUser(
+                        apiSecurity,
+                        "/api",
+                        "/Users/",
+                        id);
+            return User;
         }
         #endregion
 

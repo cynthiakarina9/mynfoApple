@@ -3,9 +3,12 @@
     using CoreNFC;
     using Foundation;
     using Interfaces;
-    using Services;
+    using mynfo.ViewModels;
+    using mynfo.Views;
     using NdefLibrary.Ndef;
     using Plugin.NFC;
+    using Rg.Plugins.Popup.Services;
+    using Services;
     using System;
     using System.IO;
     using System.Text;
@@ -29,6 +32,7 @@
 
         public NFCNdefReaderSession Session { get; set; }
         public static string user_id_tag = "?";
+        public string nameUser { get; set; }
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             //Set DB root
@@ -51,6 +55,7 @@
             //    statusBar.BackgroundColor = Color.FromHex("#7f6550").ToUIColor();
             //}
         }
+
         #region Trigger nfc
         // Set speed delay for monitoring changes.
         Xamarin.Essentials.SensorSpeed speed = Xamarin.Essentials.SensorSpeed.Game;
@@ -113,24 +118,43 @@
         #endregion Trigger nfc
 
         public void DidDetect(NFCNdefReaderSession session, NFCNdefMessage[] messages)
-        {
+        {            
             int user_id = 0;
             try
-            {
+            {                
                 if (messages != null && messages.Length > 0)
                 {
                     var first = messages[0];
                     string messa = GetRecords(first.Records);
+                    string[] variables2 = messa.Split("?");
                     string[] variables = messa.Split('=');
                     string[] depura_userid = variables[1].Split('&');
                     string tag_id = variables[2];
-                    user_id = Convert.ToInt32(depura_userid[0]);
-                    if (write_tag.modo_escritura == false) { Imprime_box.Consulta_user(user_id.ToString(), tag_id); }
+                    string name_user = variables2[1];
+                    if (depura_userid[0] == "1")
+                    {
+                        user_id = Convert.ToInt32(depura_userid[0]);
+                        nameUser = "mynfo";
+                    }
+                    else
+                    {
+                        var id_user = Encoding.UTF8.GetString(Convert.FromBase64String(variables2[2]));
+                        user_id = Convert.ToInt32(id_user);
+                        nameUser = Encoding.UTF8.GetString(Convert.FromBase64String(name_user));
+                    }
+                    
+                    MainViewModel.GetInstance().Imprime_box = new Imprime_box();
+                    var A = MainViewModel.GetInstance().Imprime_box;
+                    if (write_tag.modo_escritura == false) 
+                    { 
+                        A.Consulta_user(user_id.ToString(), tag_id, nameUser); 
+                    }
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                user_id = 0;
             }
 
             user_id_tag = user_id.ToString();
@@ -140,8 +164,8 @@
                 session.Dispose();
                 Thread.Sleep(7000);
                 write_tag.modo_escritura = false;
-                write_tag myobject = new write_tag();
-                myobject.ScanWriteAsync();
+                MainViewModel.GetInstance().Write_tag = new write_tag();
+                MainViewModel.GetInstance().Write_tag.ScanWriteAsync();                
             }
             session.InvalidateSession();
             Session.InvalidateSession();
@@ -165,6 +189,7 @@
                 });
             }
             session.InvalidateSession();
+            Session.InvalidateSession();
             session.Dispose();
         }
 

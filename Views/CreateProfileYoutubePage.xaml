@@ -7,14 +7,13 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <NavigationPage.TitleView>
         <Grid
-            BindingContext="{Binding CreateProfileSM}">
+            BindingContext="{Binding CreateProfileSM}"
+            Margin = "50,0,50,0"
+            HorizontalOptions = "Center"
+            VerticalOptions = "End">
             <ImageButton 
                 BackgroundColor = "Transparent"
-                Command="{Binding BackHomeCommand}"
-                Grid.ColumnSpan = "3"
-                Margin = "0,0,70,0"
-                HorizontalOptions = "Center"
-                VerticalOptions = "Center"
+                Command="{Binding BackHomeCommand}"                
                 WidthRequest = "100"
                 x:Name="Logosuperior"/>
         </Grid>
@@ -58,6 +57,7 @@
                             TextColor = "{StaticResource MainColor}"
                             VerticalOptions = "Center"/>
                         <Entry 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontSize = "21"
                             HeightRequest = "46"
                             HorizontalTextAlignment = "Center"
@@ -100,6 +100,7 @@
                                 WidthRequest="20"/>
                         </StackLayout>
                         <Entry 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontSize = "21"
                             HeightRequest = "46"
                             HorizontalTextAlignment = "Center"

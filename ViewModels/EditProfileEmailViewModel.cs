@@ -138,9 +138,9 @@
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Languages.Error",
+                    Languages.Error,
                     checkConnetion.Messagge,
-                    "Languages.Accept");
+                    Languages.Accept);
                 return;
             }
             var apiSecurity = Application.Current.Resources["APISecurity"].ToString();

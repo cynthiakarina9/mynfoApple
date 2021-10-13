@@ -2,6 +2,8 @@
 {
     using Models;
     using Services;
+    using System;
+    using System.Text;
     using Xamarin.Forms;
 
     public class MyQRViewModel : BaseViewModel
@@ -66,7 +68,20 @@
         #region Methods
         public string GetDato(UserLocal U)
         {
-            User = "https://boxweb.azurewebsites.net/index3.aspx?user_id=" + U.UserId + "&tag_id=";
+            //User = "https://boxweb.azurewebsites.net/index3.aspx?user_id=" + U.UserId + "&tag_id=";
+            //return User;
+            string result = string.Empty;
+
+            result = Convert.ToBase64String(Encoding.UTF8.GetBytes(Convert.ToString(U.UserId)));
+            var userName = Convert.ToBase64String(Encoding.UTF8.GetBytes(U.FullName));
+            var userTagId = Convert.ToBase64String(Encoding.UTF8.GetBytes("Tag_Id"));
+            User = "https://boxweb.azurewebsites.net/index3.aspx?" + userName + "?" + result + "?" + userTagId + "?";
+
+            if (MainViewModel.GetInstance().User.UserId == 1)
+            {
+                User = "https://boxweb.azurewebsites.net/index3.aspx?user_id=1&tag_id=";
+            }
+
             return User;
         }
         #endregion

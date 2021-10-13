@@ -12,7 +12,15 @@
 
             <!-- Parameters -->
             <x:String x:Key="APISecurity">https://mynfoapi.azurewebsites.net</x:String>
-
+            
+            <!--Definir el tema por defecto-->
+            
+            
+            <!--Color Example-->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}"/>
+                <Setter Property="BarTextColor" Value="{DynamicResource SecondaryColor}"/>            
+            </Style>
             <!--Colors -->
             <Color x:Key="AccentColor">#192DB3</Color>
             <Color x:Key="BoxActiveColor">LightGray</Color>

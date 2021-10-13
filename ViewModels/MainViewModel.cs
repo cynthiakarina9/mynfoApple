@@ -2,12 +2,14 @@
 {
     using mynfo.Helpers;
     using mynfo.Models;
+    using mynfo.Services;
     using System.Collections.ObjectModel;
 
     public class MainViewModel :BaseViewModel
     {
         #region Attributes
         private UserLocal user;
+        public static bool nfc_status { get; set; }
         #endregion
 
         #region Properties
@@ -186,6 +188,12 @@
             set;
         }
 
+        public Imprime_box Imprime_box
+        {
+            get;
+            set;
+        }
+
         public IntroductionGifViewModel IntroductionGif
         {
             get;
@@ -351,6 +359,11 @@
             set;
         }
 
+        public write_tag Write_tag
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Constructor
@@ -366,36 +379,57 @@
         private void LoadMenu()
         {
             this.Menus = new ObservableCollection<MenuItemViewModel>();
+
+            //Mi cuenta
             this.Menus.Add(new MenuItemViewModel
             {
                 Icon = "account",
                 PageName = "MyProfilePage",
                 Title = Languages.MyAccount,
             });
-            this.Menus.Add(new MenuItemViewModel
-            {
-                Icon = "question",
-                PageName = "Help",
-                Title = Languages.HelpLabel,
-            });
-            this.Menus.Add(new MenuItemViewModel
-            {
-                Icon = "icon_tag",
-                PageName = "TAGPage",
-                Title = Languages.Tag,
-            });
+            //Código QR
             this.Menus.Add(new MenuItemViewModel
             {
                 Icon = "icon_qr",
                 PageName = "QR",
                 Title = Languages.QR,
             });
+            //Tienda
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "compra",
+                PageName = "Store",
+                Title = Languages.Store,
+            });
+            //Configurar myTAG
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "icon_tag",
+                PageName = "TAGPage",
+                Title = Languages.Tag,
+            });
+            //Cómo leer otr myTAG
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "question",
+                PageName = "Help",
+                Title = Languages.HelpLabel,
+            });
+            //Cómo funciona mynfo
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "Logo_sin_relleno",
+                PageName = "BasicIntro",
+                Title = Languages.HowMynfoWorks,
+            });
+            //Comentarios
             this.Menus.Add(new MenuItemViewModel
             {
                 Icon = "comments1",
                 PageName = "Comments",
                 Title = Languages.Comments,
             });
+            //Logout
             this.Menus.Add(new MenuItemViewModel
             {
                 Icon = "logout",

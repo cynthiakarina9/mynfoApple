@@ -18,7 +18,7 @@
         #endregion
 
         #region Constructor
-        public ForeingBoxPage(ForeingBox _foreingBox)
+        public ForeingBoxPage(ForeingBox _foreingBox, bool isAfterReceiving = false)
         {
             InitializeComponent();            
             BackG.CloseWhenBackgroundIsClicked = true;
@@ -82,6 +82,9 @@
                 case "Spotify":
                     await Launcher.OpenAsync(new Uri(selectedItem.value));
                     break;
+                case "Telegram":
+                    await Launcher.OpenAsync(new Uri("https://telegram.me/" + selectedItem.value));
+                    break;
                 case "TikTok":
                     await Launcher.OpenAsync(new Uri(selectedItem.value));
                     break;
@@ -97,7 +100,7 @@
                 case "Whatsapp":
                     try
                     {
-                        Chat.Open("+52" + selectedItem.value, Languages.MessageWhatsApp + MainViewModel.GetInstance().User.FirstName);
+                        Chat.Open("+52" + selectedItem.value, Languages.MessageWhatsApp+ MainViewModel.GetInstance().User.FirstName);
                     }
                     catch (Exception ex)
                     {

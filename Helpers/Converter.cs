@@ -6,7 +6,7 @@
     public static class Converter
     {
         #region User
-        public static UserLocal ToUserLocal(User user)
+        public static UserLocal ToUserLocal(User user, bool value = true)
         {
             return new UserLocal
             {
@@ -21,7 +21,8 @@
                 Ubicacion = user.Ubicacion,
                 Ocupacion = user.Ocupacion,
                 Conexiones = user.Conexiones,
-                Fecha = user.Fecha
+                Fecha = user.Fecha,
+                MostrarTutorial = value
             };
         }
         public static User ToUserDomain(UserLocal user, byte[] imageArray)

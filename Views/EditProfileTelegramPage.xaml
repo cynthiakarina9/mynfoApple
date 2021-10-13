@@ -7,14 +7,13 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <NavigationPage.TitleView>
         <Grid
-            BindingContext = "{Binding EdithProfile}">
+            BindingContext = "{Binding EdithProfile}"
+            Margin = "50,0,50,0"
+            HorizontalOptions = "Center"
+            VerticalOptions = "End">
             <ImageButton
                 BackgroundColor = "Transparent"
-                Command="{Binding BackHomeCommand}"
-                Grid.ColumnSpan = "3"
-                Margin = "0,0,70,0"
-                HorizontalOptions = "Center" 
-                VerticalOptions = "Center"
+                Command="{Binding BackHomeCommand}"                
                 WidthRequest = "100"
                 x:Name="Logosuperior"/>
         </Grid>
@@ -71,6 +70,7 @@
                             TextColor = "{StaticResource MainColor}"
                             VerticalOptions = "Center"/>
                         <Entry 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontSize = "20"
                             HorizontalTextAlignment = "Center"
                             HorizontalOptions = "CenterAndExpand"
@@ -100,6 +100,7 @@
                             TextColor = "{StaticResource MainColor}"
                             VerticalOptions = "Center" />
                         <Entry 
+                            BackgroundColor="{AppThemeBinding Dark=Transparent}"
                             FontSize = "20"
                             HorizontalTextAlignment = "Center"
                             HorizontalOptions = "Center"

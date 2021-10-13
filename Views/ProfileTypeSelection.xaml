@@ -39,7 +39,7 @@
                     HeightRequest="40"
                     HorizontalOptions="Start"
                     IsEnabled="true"
-                    Source="lista"
+                    Source="ListProfiles_icon"
                     VerticalOptions="Start"
                     WidthRequest="40"/>
                 <ImageButton
@@ -49,7 +49,7 @@
                     HeightRequest="40"
                     HorizontalOptions="End"
                     IsEnabled="true"
-                    Source="check3"
+                    Source="check.png"
                     VerticalOptions="Start"
                     WidthRequest="40"/>
                 <Label 

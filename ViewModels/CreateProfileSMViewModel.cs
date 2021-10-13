@@ -9,6 +9,8 @@
     using Rg.Plugins.Popup.Services;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using System.Linq;
+    using System;
 
     public class CreateProfileSMViewModel : BaseViewModel
     {
@@ -166,7 +168,7 @@
                     ProfileType1 = "LinkedIn";
                     Logo1 = "linkedin2";
                     break;
-                case "TikTok":
+                case "Tiktok":
                     Profile = new ProfileSM
                     {
                         ProfileName = this.Name,
@@ -227,6 +229,26 @@
                     Logo1 = "gmail2";
                     break;
                 case "Telegram":
+                    if (!(this.Link).ToCharArray().All(Char.IsDigit))
+                    {
+                        await Application.Current.MainPage.DisplayAlert(
+                            Languages.Error,
+                            Languages.NumberValidation,
+                            Languages.Accept);
+                        this.IsRunning = false;
+                        this.IsEnabled = true;
+                        return;
+                    }
+                    if (this.Link.Length != 10)
+                    {
+                        await Application.Current.MainPage.DisplayAlert(
+                            Languages.Error,
+                            Languages.PhoneValidation2,
+                            Languages.Accept);
+                        this.IsRunning = false;
+                        this.IsEnabled = true;
+                        return;
+                    }
                     Profile = new ProfileSM
                     {
                         ProfileName = this.Name,
@@ -315,6 +337,19 @@
             MainViewModel.GetInstance().Home = new HomeViewModel();
             MainViewModel.GetInstance().MenuItem = new MenuItemViewModel();
             Application.Current.MainPage = new MasterPage();
+        }
+
+        public ICommand GotoGIFCommand
+        {
+            get
+            {
+                return new RelayCommand(GotoGIF);
+            }
+        }
+        private void GotoGIF()
+        {
+            MainViewModel.GetInstance().GIF = new GifViewModel(Type);
+            PopupNavigation.Instance.PushAsync(new GifPage());
         }
         #endregion
     }
